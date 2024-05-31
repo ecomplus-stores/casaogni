@@ -42,6 +42,40 @@
       "type": "page-title",
       "title": "Loja demo da E-Com Plus",
       "description": "Loja de demonstração e testes da plataforma E-Com Plus e Storefront. Todos os produtos, preços e informações são meramente ilustrativos."
+    },
+    {
+      "type": "apx_banner-slider",
+      "visibility": "d-block d-md-block",
+      "autoplay": 4000,
+      "slides": [
+        {
+          "desktop": {
+            "description_color": "#ffffff",
+            "animate": "fadeInUp",
+            "img": "/img/uploads/rectangle-5.png",
+            "content_order": "inside_image",
+            "btn_url": "/exclusivos",
+            "content_position": "center_left",
+            "mask_color": "#000000",
+            "btn_text": "Ver Produtos",
+            "btn_text_color": "#ffffff",
+            "mask_opacity": 5,
+            "title": "Sala de Estar",
+            "link": "/decoracao",
+            "title_color": "#ffffff",
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
+          },
+          "mobile": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/rectangle-5-1-.png"
+          },
+          "start": "2024-05-31T14:03:35.669Z",
+          "end": "2024-11-30T14:03:35.683Z"
+        }
+      ],
+      "spacing": {
+        "container": "container-fluid"
+      }
     }
   ]
 }
