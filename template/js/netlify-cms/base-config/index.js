@@ -829,7 +829,87 @@ export default options => {
             ]
           },
         ]
-      },         
+      },  
+      {
+        label: "[alpix.dev]",
+        name: "alpix",
+        editor: {
+            preview: false
+        },
+        files: [
+          {
+              name: "apx_header",
+              label: "Cabeçalho",
+              file: "content/apx_header.json",
+              fields: [
+                  {
+                      label: "Tarja Topo (Acima)",
+                      name: "topbar_1",
+                      widget: "object",
+                      required: false,
+                      fields: [
+                          {
+                              label: "Cor do Texto",
+                              name: "color",
+                              widget: "color"
+                          },
+                          {
+                              label: "Cor do Fundo",
+                              name: "background",
+                              widget: "color"
+                          },
+                          {
+                              label: "Itens",
+                              name: "topbar_1",
+                              widget: "list",
+                              required: false,
+                              fields: [
+                                  {
+                                      label: "Texto ou HTML",
+                                      name: "title",
+                                      widget: "string"
+                                  },
+                                  {
+                                      label: "URL",
+                                      name: "url",
+                                      widget: "string"
+                                  }
+                              ]
+                          }
+                      ]
+                  },                  
+              ]
+          },
+          {
+              name: "whatsapp",
+              label: "Botão Whatsapp",
+              file: "content/apx_whatsapp.json",
+              editor: {
+                  preview: false
+              },
+              fields: [
+                  {
+                      label: "Ícone",
+                      name: "image",
+                      widget: "image",
+                      required: false
+                  },
+                  {
+                      label: "Número (Ex: 559900000000) 55 + DDD + Telefone",
+                      name: "number",
+                      widget: "string"
+                  },
+                  {
+                      label: "Posição",
+                      name: "position",
+                      widget: "select",
+                      options: ["Esquerda", "Direita"]
+                  }
+              ]
+          },
+            
+        ]
+      }      
     ]
   }
 }
