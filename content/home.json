@@ -76,6 +76,58 @@
           }
         }
       ]
+    },
+    {
+      "type": "collection-shelf",
+      "shuffle": false,
+      "limit": 12,
+      "page": 1,
+      "sort": "lowest_price",
+      "title": "Lançamentos",
+      "link": "/lancamentos"
+    },
+    {
+      "type": "apx_banners-grid",
+      "visibility": "d-block d-md-block",
+      "grid": "3",
+      "banners": [
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/mesaposta.png",
+            "title": "Mesa Posta",
+            "title_color": "#ffffff",
+            "description_color": "#ffffff",
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
+            "btn_text": "VER PRODUTOS",
+            "btn_text_color": "#ffffff"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          }
+        },
+        {
+          "desktop": {
+            "description_color": "#ffffff",
+            "animate": "fadeInUp",
+            "img": "/img/uploads/cantinhodocafe.png",
+            "content_order": "inside_image",
+            "content_position": "bottom_left",
+            "mask_color": "#000000",
+            "btn_text": "VER PRODUTOS",
+            "btn_text_color": "#ffffff",
+            "mask_opacity": 2,
+            "title": "Cantinho do Café",
+            "link": "/cafeteiras",
+            "title_color": "#ffffff",
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
+          },
+          "mobile": {
+            "mask_opacity": 0
+          }
+        }
+      ],
+      "breakline": "false"
     }
   ]
 }
