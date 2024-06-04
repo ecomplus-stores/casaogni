@@ -128,6 +128,33 @@
         }
       ],
       "breakline": "false"
+    },
+    {
+      "type": "apx_banners-grid",
+      "visibility": "d-block d-md-block",
+      "grid": "1",
+      "breakline": "false",
+      "banners": [
+        {
+          "desktop": {
+            "description_color": "#ffffff",
+            "animate": "fadeIn",
+            "img": "/img/uploads/organizacao.png",
+            "content_order": "inside_image",
+            "content_position": "bottom_left",
+            "mask_color": "#000000",
+            "btn_text": "VER PRODUTOS",
+            "btn_text_color": "#ffffff",
+            "mask_opacity": 5,
+            "title": "Organização",
+            "title_color": "#ffffff",
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
+          },
+          "mobile": {
+            "mask_opacity": 0
+          }
+        }
+      ]
     }
   ]
 }
