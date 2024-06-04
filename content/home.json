@@ -53,10 +53,29 @@
       "shuffle": true,
       "collection_id": null,
       "sort": "offers",
-      "title": "",
+      "title": "Mais Vendidos",
       "headless": false,
       "limit": 12,
       "page": 1
+    },
+    {
+      "type": "apx_banner-line",
+      "visibility": "d-block d-md-block",
+      "banners": [
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/rectangle-8-1-.png",
+            "title": "Gift Card",
+            "description": "O item ideal para quem quer presentear e está na dúvida",
+            "btn_text": "Comprar",
+            "btn_url": "/gift-card"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          }
+        }
+      ]
     }
   ]
 }
