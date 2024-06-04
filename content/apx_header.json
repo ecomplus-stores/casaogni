@@ -1,0 +1,16 @@
+{
+  "topbar_1": {
+    "topbar_1": [
+      {
+        "title": "<b>Ganhe 5% OFF</b> para pagamento via Pix",
+        "url": "/"
+      },
+      {
+        "title": "Compre em até 10x sem juros com cartão de crédito",
+        "url": "/"
+      }
+    ],
+    "background": "#aa644b",
+    "color": "#ffffff"
+  }
+}
