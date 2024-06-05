@@ -40,7 +40,33 @@
       "type": "apx_list-images",
       "visibility": "d-block d-md-block",
       "title": "Decore por <b>Ambiente</b>",
+      "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
       "banners": [
+        {
+          "img": "/img/uploads/rectangle-8.png",
+          "link": "/sala-de-estar",
+          "title": "Sala de Estar"
+        },
+        {
+          "img": "/img/uploads/rectangle-8.png",
+          "link": "/sala-de-estar",
+          "title": "Sala de Estar"
+        },
+        {
+          "img": "/img/uploads/rectangle-8.png",
+          "link": "/sala-de-estar",
+          "title": "Sala de Estar"
+        },
+        {
+          "img": "/img/uploads/rectangle-8.png",
+          "link": "/sala-de-estar",
+          "title": "Sala de Estar"
+        },
+        {
+          "img": "/img/uploads/rectangle-8.png",
+          "link": "/sala-de-estar",
+          "title": "Sala de Estar"
+        },
         {
           "img": "/img/uploads/rectangle-8.png",
           "link": "/sala-de-estar",
@@ -54,6 +80,7 @@
       "collection_id": null,
       "sort": "offers",
       "title": "Mais Vendidos",
+      "link": "/lancamentos",
       "headless": false,
       "limit": 12,
       "page": 1

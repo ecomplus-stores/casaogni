@@ -10,44 +10,44 @@
 >
   <transition :enter-active-class="transitionClass">
     <section v-if="!isLoading">
-      <slot
-        name="discount-tag"
-        v-bind="{ discount }"
-      >
-        <span
-          v-if="isActive && discount > 0"
-          class="product-card__offer-stamp"
-        >
-          <i class="i-arrow-down"></i> <b>{{ discount }}</b>%
-        </span>
-      </slot>
+      
       <slot name="stamps" />
 
       <slot name="body">
-        <a-link
-          class="product-card__link"
-          :href="`/${body.slug}`"
-          :title="name"
-        >
+        
           <slot name="header"/>
 
           <div class="product-card__pictures">
             <template v-if="body.pictures && body.pictures.length">
-              <a-picture
-                class="product-card__picture"
-                v-for="(picture, index) in body.pictures.slice(0, 2).reverse()"
-                v-if="body.pictures.length === 1 || index === 1 || isHovered"
-                :key="index"
-                :src="picture"
-                :can-calc-height="false"
-              />
+                <div class="product-card__gallery"
+                ref="productGallery">
+                  <div
+                    v-for="(picture, index) in body.pictures"
+                    class="item"
+                    :key="'slide-' + index"                
+                  >
+                    <a-picture
+                      v-if="picture"
+                      class="product-card__picture"
+                      :src="picture"
+                    />
+                  </div>
+                </div>      
             </template>
+            
             <a-picture
               v-else
               class="product-card__picture"
             />
           </div>
-
+        
+      </slot>
+      <div class="px-3 pb-3">
+        <a-link
+          class="product-card__link"
+          :href="`/${body.slug}`"
+          :title="name"
+        >  
           <slot name="title">
             <component
               :is="headingTag"
@@ -57,108 +57,131 @@
             </component>
           </slot>
         </a-link>
-      </slot>
-
-      <slot name="rating">
-        <div
-          v-once
-          class="product-card__rating"
-          :data-sku="body.sku"
-          v-html="ratingHtml"
-        ></div>
-      </slot>
-
-      <slot
-        name="unavailable"
-        v-if="!body.available || !body.visible"
-      >
-        <p class="badge badge-warning mt-auto">
-          {{ i19unavailable }}
-        </p>
-      </slot>
-
-      <slot
-        name="out-of-stock"
-        v-else-if="!isInStock"
-      >
-        <p class="badge badge-dark mt-auto">
-          {{ i19outOfStock }}
-        </p>
-      </slot>
-
-      <slot
-        name="without-price"
-        v-else-if="isWithoutPrice"
-      >
-        <p class="badge badge-info mt-auto">
-          {{ i19uponRequest }}
-        </p>
-      </slot>
-
-      <template v-else>
-        <slot name="prices">
-          <a-prices
-            class="product-card__prices"
-            :product="body"
-            :installments-option="installmentsOption"
-            :discount-option="discountOption"
-          />
+        <slot name="rating">
+          <div
+            v-once
+            class="product-card__rating"
+            :data-sku="body.sku"
+            v-html="ratingHtml"
+          ></div>
         </slot>
-
-        <div
-          @click="buy"
-          class="product-card__buy fade"
+  
+        <slot
+          name="unavailable"
+          v-if="!body.available || !body.visible"
         >
-          <slot name="buy">
-            <div
-              v-if="buyHtml"
-              v-html="buyHtml"
-            ></div>
-
-            <button
-              type="button"
-              class="btn btn-primary"
-              :class="isSmall ? 'btn-sm': 'btn-block'"
-              :disabled="isWaitingBuy"
+          <p class="badge badge-warning mt-auto">
+            {{ i19unavailable }}
+          </p>
+        </slot>
+  
+        <slot
+          name="out-of-stock"
+          v-else-if="!isInStock"
+        >
+          <p class="badge badge-dark mt-auto">
+            {{ i19outOfStock }}
+          </p>
+        </slot>
+  
+        <slot
+          name="without-price"
+          v-else-if="isWithoutPrice"
+        >
+          <p class="badge badge-info mt-auto">
+            {{ i19uponRequest }}
+          </p>
+        </slot>
+  
+        <template v-else>
+          
+            <slot name="prices">
+              <a-prices
+                class="product-card__prices"
+                :product="body"
+                :installments-option="installmentsOption"
+                :discount-option="discountOption"
+              />
+            </slot>
+            
+          
+          
+  
+          <div
+            @click="buy"
+            class="product-card__buy fade"
+          >
+            <slot name="buy">
+              <div
+                v-if="buyHtml"
+                v-html="buyHtml"
+              ></div>
+  
+              <button
+                type="button"
+                class="btn btn-primary"
+                :class="isSmall ? 'btn-sm': 'btn-block'"
+                :disabled="isWaitingBuy"
+              >
+                <span
+                  v-if="isWaitingBuy"
+                  class="product-card__buy-loading spinner-grow spinner-grow-sm"
+                  role="status"
+                >
+                  <span class="sr-only">Loading...</span>
+                </span>
+  
+                <slot name="buy-button-content">
+                  <i class="svg-ico">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 8.3335V31.6668M8.33333 20.0002H31.6667" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </i>
+                </slot>
+              </button>
+            </slot>
+          </div>
+        </template>      
+        <div class="d-flex align-items-center product-card__tags">
+          <slot
+              name="discount-tag"
+              v-bind="{ discount }"
             >
               <span
-                v-if="isWaitingBuy"
-                class="product-card__buy-loading spinner-grow spinner-grow-sm"
-                role="status"
+                v-if="isActive && discount > 0"
+                class="product-card__offer-stamp"
               >
-                <span class="sr-only">Loading...</span>
+                <i class="i-arrow-down"></i> <b>{{ discount }}</b>%
               </span>
-
-              <slot name="buy-button-content">
-                <i class="i-shopping-bag mr-1"></i>
-                {{ strBuy }}
-              </slot>
-            </button>
-          </slot>
+            </slot>
         </div>
-      </template>      
-      
-      <slot name="favorite">
-        <a 
-          class="btn product-card__favorite fade"
-          @click="toggleFavorite"
-          :href="isLogged ? null : accountUrl"
-          :aria-label="i19addToFavorites"
-        >
-          <i 
-            class="i-heart mr-1"
-            :class="isFavorite ? 'active' : null"
+        <slot name="favorite">
+          <a 
+            class="btn product-card__favorite fade"
+            @click="toggleFavorite"
+            :href="isLogged ? null : accountUrl"
+            :aria-label="i19addToFavorites"
           >
-          </i>
-        </a>
-      </slot>
-
-      <slot name="footer">
-        <div
-          v-if="footerHtml"
-          v-html="footerHtml"
-        ></div>
-      </slot>
+            <i 
+              class="svg-ico heart"
+              :class="isFavorite ? 'active' : null"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.1111 3C19.6333 3 22 6.3525 22 9.48C22 15.8138 12.1778 21 12 21C11.8222 21 2 15.8138 2 9.48C2 6.3525 4.36667 3 7.88889 3C9.91111 3 11.2333 4.02375 12 4.92375C12.7667 4.02375 14.0889 3 16.1111 3Z" stroke="#CCCCCC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+    
+            </i>
+          </a>
+        </slot>
+  
+        <slot name="footer">
+          <div
+            v-if="footerHtml"
+            v-html="footerHtml"
+          ></div>
+        </slot>
+      </div>
+      
     </section>
   </transition>
 

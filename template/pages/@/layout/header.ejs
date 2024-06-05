@@ -3,7 +3,7 @@
 const header = _.cms('header') || {}
 const contacts = _.cms('contacts') || {}
 const themeCustom = _.settings.theme.custom || ''
-
+const apx_header = _.cms('apx_header') || {}
 // social networks handled by contacts
 const networks = [
   'facebook',
@@ -54,7 +54,7 @@ const hasAllDepartments = header.menu_all_departments
 
 <div id="overlay" class="fade"></div>
 
-<div class="top-bar">
+<div class="top-bar d-none">
   <% if (header.marketing_stripe) { %>
     <% if (header.marketing_stripe.text) { %>
       <% if (header.marketing_stripe.link) { %>
@@ -122,9 +122,66 @@ const hasAllDepartments = header.menu_all_departments
 </div>
 
 <header class="header" id="header">
+  <% if(apx_header?.topbar_1?.topbar_1?.length > 0){ %>
+    <div class="apx_topbar first py-md-2 py-2" style="--color:<%= apx_header.topbar_1.color %>; --background:<%= apx_header.topbar_1.background %>;">
+      <div class="container py-md-1">
+        <div class="row">
+          <div class="col-12">
+            <div
+              class="glide"
+              data-wait-mutation="false"
+              data-autoplay="3000"
+              data-per-view="1"
+              data-per-view-md="1"
+              data-per-view-sm="1"
+            >
+              <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides products-carousel__list">
+                  <% apx_header.topbar_1.topbar_1.forEach(({ url, title })=> { %>
+                    <li class="glide__slide">
+                        <% if(url){ %> 
+                        <a href="<%= url %>"> 
+                        <% } %>
+                          <%- title %>
+                        <% if(url){ %> 
+                        </a>
+                        <% } %>
+                      </li>
+                  <% }) %>
+                  </ul>
+                  <div
+                    class="glide__arrows glide__arrows--outer"
+                    data-glide-el="controls"
+                  >
+                    <button
+                      class="btn glide__arrow glide__arrow--left "
+                      data-glide-dir="<"
+                      aria-label="<%= _.dictionary('previous') %>"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.5 15L7.5 10L12.5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <button
+                      class="btn glide__arrow glide__arrow--right"
+                      data-glide-dir=">"
+                      aria-label="<%= _.dictionary('next') %>"
+                    > 
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>           
+    </div>
+  <%  } %>
   <div class="header__container container-fluid">
     <div class="header__row row<%= isCentralizedLogo ? ' header__row--centralized-logo' : '' %><%= isCentralizedLogo && isCategoriesNavFull ? ' header__row--full-width' : '' %>">
-      <div class="col-auto p-0 header__toggler-block">
+      <div class="col-auto p-0 header__toggler-block d-md-none">
         <button
           class="btn header__toggler<%= hasMegamenu ? ' d-lg-none' : '' %>"
           type="button"
@@ -165,7 +222,22 @@ const hasAllDepartments = header.menu_all_departments
           >
             <i class="i-search"></i>
           </button>
-
+          <a
+            id="wishlist-button"
+            class="btn btn-lg"
+            role="button"            
+            title="Wishlist"
+          >
+            <i class="svg-ico">              
+              <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.6297 14.0612C23.1594 13.12 23.6012 12.2706 23.8736 11.6242C25.1964 8.48524 23.8884 4.87458 20.6908 3.40175C17.4933 1.92892 14.2825 3.45612 12.8734 6.40481C10.1787 4.55574 6.58402 4.8273 4.60169 7.71283C2.61936 10.5984 3.2415 14.368 5.95659 16.4251C7.18883 17.3586 9.62586 18.7344 11.9203 19.9588M23.6945 16.6459C23.0966 13.433 20.3628 11.0832 16.9207 11.7219C13.4786 12.3605 11.2529 15.466 11.7183 18.8404C12.0921 21.5515 14.1557 27.9123 14.9526 30.3083C15.0613 30.6353 15.1157 30.7987 15.2233 30.9127C15.3171 31.0121 15.4418 31.084 15.5747 31.1156C15.7272 31.1518 15.896 31.1172 16.2335 31.0479C18.7069 30.54 25.2474 29.1467 27.7822 28.1149C30.9372 26.8307 32.5653 23.3527 31.3458 20.0502C30.1263 16.7478 26.776 15.5573 23.6945 16.6459Z" stroke="#493C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+  
+            </i>
+            <span class="d-none d-md-block">
+              Lista de Desejos
+            </span>
+          </a>
           <a
             id="user-button"
             class="btn btn-lg"
@@ -173,7 +245,15 @@ const hasAllDepartments = header.menu_all_departments
             href="/app/#/account/"
             title="<%= _.dictionary('myAccount') %>"
           >
-            <i class="i-user"></i>
+            <i class="svg-ico">
+              <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.107 21.25C12.6161 21.25 8.62234 23.4184 6.07971 26.7835C5.53246 27.5077 5.25884 27.8698 5.26779 28.3592C5.27471 28.7373 5.51214 29.2144 5.80965 29.4478C6.19473 29.75 6.72836 29.75 7.79563 29.75H26.4185C27.4857 29.75 28.0194 29.75 28.4044 29.4478C28.702 29.2144 28.9394 28.7373 28.9463 28.3592C28.9553 27.8698 28.6816 27.5077 28.1344 26.7835C25.5918 23.4184 21.598 21.25 17.107 21.25Z" stroke="#493C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17.107 17C20.6279 17 23.482 14.1458 23.482 10.625C23.482 7.10418 20.6279 4.25 17.107 4.25C13.5862 4.25 10.732 7.10418 10.732 10.625C10.732 14.1458 13.5862 17 17.107 17Z" stroke="#493C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </i>
+            <span class="d-none d-md-block">
+              Minha Conta
+            </span>
           </a>
           <a
             id="cart-button"
@@ -182,7 +262,14 @@ const hasAllDepartments = header.menu_all_departments
             href="/app/#/cart"
             title="<%= _.dictionary('openCart') %>"
           >
-            <i class="i-shopping-bag"></i>
+            <i class="svg-ico">
+              <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.7731 11.3333C22.7731 12.8362 22.1761 14.2776 21.1134 15.3403C20.0507 16.403 18.6093 17 17.1064 17C15.6035 17 14.1622 16.403 13.0995 15.3403C12.0368 14.2776 11.4398 12.8362 11.4398 11.3333M5.25349 10.4853L4.26182 22.3853C4.04879 24.9417 3.94227 26.2199 4.3744 27.2059C4.75407 28.0723 5.41189 28.7872 6.2437 29.2375C7.19043 29.75 8.47307 29.75 11.0383 29.75H23.1745C25.7398 29.75 27.0224 29.75 27.9692 29.2375C28.801 28.7872 29.4588 28.0723 29.8385 27.2059C30.2706 26.2199 30.1641 24.9417 29.951 22.3853L28.9594 10.4853C28.7761 8.28573 28.6844 7.18595 28.1973 6.35355C27.7684 5.62054 27.1297 5.03285 26.3636 4.66628C25.4936 4.25 24.39 4.25 22.1829 4.25L12.03 4.25C9.82282 4.25 8.71922 4.25 7.84925 4.66628C7.08315 5.03285 6.44445 5.62054 6.01553 6.35354C5.52844 7.18595 5.43679 8.28573 5.25349 10.4853Z" stroke="#493C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </i>
+            <span class="d-none d-md-block">
+              Minha Sacola
+            </span>
             <span id="cart-count" class="badge badge-primary"></span>
           </a>
         </div>
@@ -208,49 +295,58 @@ const hasAllDepartments = header.menu_all_departments
           class="d-none d-lg-block col-12 col-lg<%= searchColSize %> collapse show"
           id="search-bar"
         >
-          <form
-            class="header__search mt-2 mt-md-3 mt-lg-0"
-            id="search-form"
-            action="/search"
-            method="get"
-          >
-            <input
-              type="search"
-              name="term"
-              placeholder="<%= _.dictionary('searchProducts') %>"
-              aria-label="<%= _.dictionary('searchProducts') %>"
-              class="header__search-input form-control"
-              id="search-input"
-            >
-            <button
-              type="submit"
-              class="header__search-btn"
-              aria-label="<%= _.dictionary('searchProducts') %>"
-            >
-              <i class="i-search"></i>
+          <div class="box">
+            <button class="voice-search">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.6068 10V12C19.6068 15.866 16.4728 19 12.6068 19M5.60681 10V12C5.60681 15.866 8.74082 19 12.6068 19M12.6068 19V22M8.60681 22H16.6068M12.6068 15C10.95 15 9.60681 13.6569 9.60681 12V5C9.60681 3.34315 10.95 2 12.6068 2C14.2637 2 15.6068 3.34315 15.6068 5V12C15.6068 13.6569 14.2637 15 12.6068 15Z" stroke="#AA644B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </button>
-            <div id="instant-search">
-              <!--
-                `InstantSearch` should be open on input focus:
-                https://developers.e-com.plus/storefront/@ecomplus/storefront-components/docs/InstantSearch.html
-              -->
-            </div>
-          </form>
+            <form
+              class="header__search"
+              id="search-form"
+              action="/search"
+              method="get"
+            >
+              <input
+                type="search"
+                name="term"
+                placeholder="O que está procurando?"
+                aria-label="<%= _.dictionary('searchProducts') %>"
+                class="header__search-input form-control"
+                id="search-input"
+              >
+              <button
+                type="submit"
+                class="header__search-btn"
+                aria-label="<%= _.dictionary('searchProducts') %>"
+              > 
+                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.6069 21L17.2569 16.65M11.6069 6C14.3684 6 16.6069 8.23858 16.6069 11M19.6069 11C19.6069 15.4183 16.0252 19 11.6069 19C7.18866 19 3.60693 15.4183 3.60693 11C3.60693 6.58172 7.18866 3 11.6069 3C16.0252 3 19.6069 6.58172 19.6069 11Z" stroke="#493C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>  
+              </button>
+              <div id="instant-search">
+                <!--
+                  `InstantSearch` should be open on input focus:
+                  https://developers.e-com.plus/storefront/@ecomplus/storefront-components/docs/InstantSearch.html
+                -->
+              </div>
+            </form>
 
-          <% if (_.settings.domain) { %>
-            <script type="application/ld+json"><%-
-              JSON.stringify({
-                '@context': 'http://schema.org',
-                '@type': 'WebSite',
-                url: `https://${_.settings.domain}/`,
-                potentialAction: {
-                  '@type': 'SearchAction',
-                  target: `https://${_.settings.domain}/search?term={search_term_string}`,
-                  'query-input': 'required name=search_term_string'
-                }
-              })
-            %></script>
-          <% } %>
+            <% if (_.settings.domain) { %>
+              <script type="application/ld+json"><%-
+                JSON.stringify({
+                  '@context': 'http://schema.org',
+                  '@type': 'WebSite',
+                  url: `https://${_.settings.domain}/`,
+                  potentialAction: {
+                    '@type': 'SearchAction',
+                    target: `https://${_.settings.domain}/search?term={search_term_string}`,
+                    'query-input': 'required name=search_term_string'
+                  }
+                })
+              %></script>
+            <% } %>
+          </div>
         </div>
       <% } %>
 
@@ -266,104 +362,112 @@ const hasAllDepartments = header.menu_all_departments
         <% } %>
       <% } %>
 
-      <% if (categories && categories.length) { %>
-        <div class="d-none d-lg-block <%= isCategoriesNavFull ? 'col-12 order-lg-last' : 'col' %> header__nav-block">
-          <nav class="header__nav<%= isCategoriesNavFull ? ' header__nav--full' : '' %>">
-            <% if (hasAllDepartments) { %>
-              <div class="d-inline-block">
-                <a 
-                  href="javascript:;"
-                  class="header__category"
-                  id="cd-all"
-                  onmouseover="toggleSubmenu('all', this)"
-                  onclick="toggleSubmenu('all', this)"
-                >
-                  <%= header.name_all_departments || _.dictionary('all') %>
-                </a>
-                <nav class="header__submenu header__submenu--full" id="s-all">
-                  <div class="row">
-                    <% _.categories.forEach(({ name, slug, parent, _id }) => { %>
-                      <% if (!parent) { 
-                        %>
-                        <div class="col-12 col-lg-<%- isCategoriesNavFull ? '2' : '4' %>">
-                          <a 
-                            id="sd-all-<%= _id %>" 
-                            href="/<%= slug %>"
-                          >
-                            <%= name %>
-                          </a>
-                        <% const subcategories = _.categories.filter(({ parent }) => parent && parent.slug === slug) %>
-                        <% if (subcategories.length) { %>
-                          <div id="header__submenu-<%= slug %>">
-                            <ul class="header__links">
-                              <% subcategories.forEach(subcategory => { %>
-                                <li>
-                                  <a id="td-all-<%= subcategory._id %>" class="header__submenu-subcategory" href="/<%= subcategory.slug %>">
-                                    <%= subcategory.name %>
-                                  </a>
-                                </li>
-                                <% }) %>
-                              </ul>
+      
+    </div>
+   
+  </div>
+  <div class="border">
+    <div class="container">
+      <div class="row">
+        <% if (categories && categories.length) { %>
+          <div class="d-none d-lg-block <%= isCategoriesNavFull ? 'col-12 order-lg-last' : 'col' %> header__nav-block">
+            <nav class="header__nav<%= isCategoriesNavFull ? ' header__nav--full' : '' %>">
+              <% if (hasAllDepartments) { %>
+                <div class="d-inline-block">
+                  <a 
+                    href="javascript:;"
+                    class="header__category"
+                    id="cd-all"
+                    onmouseover="toggleSubmenu('all', this)"
+                    onclick="toggleSubmenu('all', this)"
+                  >
+                    <%= header.name_all_departments || _.dictionary('all') %>
+                  </a>
+                  <nav class="header__submenu header__submenu--full" id="s-all">
+                    <div class="row">
+                      <% _.categories.forEach(({ name, slug, parent, _id }) => { %>
+                        <% if (!parent) { 
+                          %>
+                          <div class="col-12 col-lg-<%- isCategoriesNavFull ? '2' : '4' %>">
+                            <a 
+                              id="sd-all-<%= _id %>" 
+                              href="/<%= slug %>"
+                            >
+                              <%= name %>
+                            </a>
+                          <% const subcategories = _.categories.filter(({ parent }) => parent && parent.slug === slug) %>
+                          <% if (subcategories.length) { %>
+                            <div id="header__submenu-<%= slug %>">
+                              <ul class="header__links">
+                                <% subcategories.forEach(subcategory => { %>
+                                  <li>
+                                    <a id="td-all-<%= subcategory._id %>" class="header__submenu-subcategory" href="/<%= subcategory.slug %>">
+                                      <%= subcategory.name %>
+                                    </a>
+                                  </li>
+                                  <% }) %>
+                                </ul>
+                              </div>
+                            <% } %>
                             </div>
                           <% } %>
-                          </div>
-                        <% } %>
-                      <% }) %>
-                    </div>
-                  </nav>
-              </div>
-            <% } %>
-            <% categories.forEach(({ slug, name, _id}) => { %>
-              <% let $categoryLink %>
-              <div class="d-inline-block">
-                <a
-                  href="javascript:;"
-                  class="header__category"
-                  id="cd-<%= _id %>"
-                  <%- hasMegamenu
-                    ? `onmouseover="toggleSubmenu('${slug}', this)" onclick="toggleSubmenu('${slug}', this, true)"`
-                    : `onclick="toggleSidenav('${slug}')"` %>
-                >
-                  <%= name %>
-                </a>
-                <%- $categoryLink %>
-                <%  if (slug && hasMegamenu) { %>
-                  <% const subcategories = _.categories.filter(({ parent }) => parent && parent.slug === slug) %>
-                  <% if (subcategories.length) { %>
-                    <%
-                      if (isAlphabeticalOrderSubmenu) {
-                        subcategories.sort((a, b)=> {
-                          return b.name > a.name ? -1 : 1
-                        })
-                      }
-                    %>
-                    <nav class="header__submenu<%= fullWidthSubmenu ? ' header__submenu--full' : '' %>" id="<%= `s-${slug.replace(/\//g, '_')}` %>">
-                      <% subcategories.forEach(subcategory => { %>
-                        <div>               
-                          <a id="sd-<%= subcategory._id %>" href="/<%= subcategory.slug %>"><%= subcategory.name %></a>
-                          <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
-                          <%
-                            if (isAlphabeticalOrderSubmenu) {
-                              thirdCategories.sort((a, b)=> {
-                                return b.name > a.name ? -1 : 1
-                              })
-                            }
-                          %>
-                          <% thirdCategories.forEach(thirdCategory => { %>
-                            <a id="td-<%= thirdCategory._id %>" class="header__submenu-subcategory" href="/<%= thirdCategory.slug %>">
-                              <%= thirdCategory.name %>
-                            </a>
-                          <% }) %>
-                        </div>
-                      <% }) %>
+                        <% }) %>
+                      </div>
                     </nav>
+                </div>
+              <% } %>
+              <% categories.forEach(({ slug, name, _id}) => { %>
+                <% let $categoryLink %>
+                <div class="d-inline-block">
+                  <a
+                    href="javascript:;"
+                    class="header__category"
+                    id="cd-<%= _id %>"
+                    <%- hasMegamenu
+                      ? `onmouseover="toggleSubmenu('${slug}', this)" onclick="toggleSubmenu('${slug}', this, true)"`
+                      : `onclick="toggleSidenav('${slug}')"` %>
+                  >
+                    <%= name %>
+                  </a>
+                  <%- $categoryLink %>
+                  <%  if (slug && hasMegamenu) { %>
+                    <% const subcategories = _.categories.filter(({ parent }) => parent && parent.slug === slug) %>
+                    <% if (subcategories.length) { %>
+                      <%
+                        if (isAlphabeticalOrderSubmenu) {
+                          subcategories.sort((a, b)=> {
+                            return b.name > a.name ? -1 : 1
+                          })
+                        }
+                      %>
+                      <nav class="header__submenu<%= fullWidthSubmenu ? ' header__submenu--full' : '' %>" id="<%= `s-${slug.replace(/\//g, '_')}` %>">
+                        <% subcategories.forEach(subcategory => { %>
+                          <div>               
+                            <a id="sd-<%= subcategory._id %>" href="/<%= subcategory.slug %>"><%= subcategory.name %></a>
+                            <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
+                            <%
+                              if (isAlphabeticalOrderSubmenu) {
+                                thirdCategories.sort((a, b)=> {
+                                  return b.name > a.name ? -1 : 1
+                                })
+                              }
+                            %>
+                            <% thirdCategories.forEach(thirdCategory => { %>
+                              <a id="td-<%= thirdCategory._id %>" class="header__submenu-subcategory" href="/<%= thirdCategory.slug %>">
+                                <%= thirdCategory.name %>
+                              </a>
+                            <% }) %>
+                          </div>
+                        <% }) %>
+                      </nav>
+                    <% } %>
                   <% } %>
-                <% } %>
-              </div>
-            <% }) %>
-          </nav>
-        </div>
-      <% } %>
+                </div>
+              <% }) %>
+            </nav>
+          </div>
+        <% } %>
+      </div>
     </div>
   </div>
 </header>

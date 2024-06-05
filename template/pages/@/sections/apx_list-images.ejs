@@ -8,9 +8,9 @@
 
   <section
     class="apx-list-image"
-    data-title="<%= title %>"
+    data-title="<%=-title %>"
   >
-    <div class="<%= opt.container || opt.spacing.container %> 
+    <div class="<%= opt.spacing?.container || 'container' %> 
       mt-md-<%= opt.spacing?.desktop ? opt.spacing.desktop.margin_top : 0 %>
       mt-<%= opt.spacing?.mobile ? opt.spacing.mobile.margin_top : 0%>
       mb-md-<%= opt.spacing?.desktop ? opt.spacing.desktop.margin_bottom : 0%>
@@ -20,42 +20,85 @@
       pb-md-<%= opt.spacing?.desktop ? opt.spacing.desktop.padding_bottom : 0%>
       pb-<%= opt.spacing?.mobile ? opt.spacing.mobile.padding_bottom : 0%>
       ">
-      <div class="d-flex justify-content-between align-items-center">
-        <% if (opt.title) { %>
-          <h4 class="apx-section-title font-weight-700">
-            <%= title %>
-          </h4>
-          <% if (link) { %>
-            <a href="<%= link %>" class="d-block font-weight-600">
-              Ver Todos
-            </a>
-          <% } %>
-        <% } %>
-      </div>
-      <% if (Array.isArray(opt.banners) && opt.banners.length) { %>
-        <div class="row">
-          <% for (let i = 0; i < opt.banners.length; i++) { %>
-            <div class="item col-auto">
-              <a href="<%= opt.banners[i].link || 'javascript:;' %>">
-                <div class="pic">
-                  <img
-                    class="img-responsive w-100"
-                    loading="lazy"
-                    src="<%= opt.banners[i].img.replace('.webp', '.png') %>"
-                    alt="<%= opt.banners[i].title %>"                 
-                  />    
-                </div>
-                <h4><%= opt.banners[i].title %></h4>
-              </a>
-            </div>
-          <% } %>
+      <div class="row align-items-center">
+        <div class="col-md-4 col-12">
+          <div class="d-flex flex-column ">
+            <% if (opt.title) { %>
+              <h4 class="apx-section-title">
+                <%- title %>
+              </h4>              
+            <% } %>
+            <% if (opt.description) { %>
+              <p>
+                <%- opt.description %>
+              </p>              
+            <% } %>
+          </div>
         </div>
-      <% } %>
+        <div class="col-md-8 col-12">
+          <% if (Array.isArray(opt.banners) && opt.banners.length) { %>
+            <div
+              class="glide"
+              data-wait-mutation="false"
+              data-autoplay="3000"
+              data-per-view="3"
+              data-per-view-md="3"
+              data-per-view-sm="2"
+            >
+              <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                <% for (let i = 0; i < opt.banners.length; i++) { %>
+                  <li class="glide__slide">
+                    <div class="item">
+                      <a href="<%= opt.banners[i].link || 'javascript:;' %>">
+                        <div class="pic">
+                          <img
+                            class="img-responsive w-100"
+                            loading="lazy"
+                            src="<%= opt.banners[i].img.replace('.webp', '.png') %>"
+                            alt="<%= opt.banners[i].title %>"                 
+                          />    
+                        </div>
+                        <h4><%= opt.banners[i].title %></h4>
+                      </a>
+                    </div>
+                  </li>
+                <% } %>
+                </ul>
+                <div
+                    class="glide__arrows glide__arrows--outer"
+                    data-glide-el="controls"
+                  >
+                    <button
+                      class="btn glide__arrow glide__arrow--left circle d-md-none"
+                      data-glide-dir="<"
+                      aria-label="<%= _.dictionary('previous') %>"
+                    >
+                      
+                      <svg width="42" height="44" viewBox="0 0 42 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.399994" width="41.25" height="44" rx="20.625" fill="white"/>
+                        <path d="M26.1812 33L15.8687 22L26.1812 11" stroke="#AA644B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+  
+                    </button>
+                    <button
+                      class="btn glide__arrow glide__arrow--right circle"
+                      data-glide-dir=">"
+                      aria-label="<%= _.dictionary('next') %>"
+                    > 
+                      
+                      <svg width="42" height="44" viewBox="0 0 42 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="41.25" height="44" rx="20.625" transform="matrix(-1 0 0 1 41.65 0)" fill="white"/>
+                        <path d="M15.8688 33L26.1813 22L15.8688 11" stroke="#AA644B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+  
+                    </button>
+                  </div>
+              </div>
+            </div>
+          <% } %>          
+        </div>
+      </div>
     </div>
-    
-
-    
-
-    
   </section>
 <% } %>

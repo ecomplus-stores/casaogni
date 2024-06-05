@@ -536,6 +536,12 @@ export default options => {
           widget: 'string'
         },
         {
+          label: 'Descrição',
+          required: false,
+          name: 'description',
+          widget: 'string'
+        },
+        {
           label: 'Link da Sessão',
           required: false,
           name: 'link',
@@ -574,6 +580,18 @@ export default options => {
       widget: 'object',
       fields: [
         ...spacer, 
+        {
+          label: 'Título da Sessão',
+          required: false,
+          name: 'title',
+          widget: 'string'
+        },
+        {
+          label: 'Descrição',
+          required: false,
+          name: 'description',
+          widget: 'string'
+        },
         {
           label: 'Banners',
           name: 'banners',
