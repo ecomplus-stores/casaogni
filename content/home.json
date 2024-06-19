@@ -101,6 +101,32 @@
           "mobile": {
             "mask_opacity": 0
           }
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/rectangle-8-1-.png",
+            "title": "Gift Card",
+            "description": "O item ideal para quem quer presentear e está na dúvida",
+            "btn_text": "Comprar",
+            "btn_url": "/gift-card"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          }
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/rectangle-8-1-.png",
+            "title": "Gift Card",
+            "description": "O item ideal para quem quer presentear e está na dúvida",
+            "btn_text": "Comprar",
+            "btn_url": "/gift-card"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          }
         }
       ]
     },
@@ -123,6 +149,8 @@
             "mask_opacity": 0,
             "img": "/img/uploads/mesaposta.png",
             "title": "Mesa Posta",
+            "content_order": "inside_image",
+            "content_position": "bottom_left",
             "title_color": "#ffffff",
             "description_color": "#ffffff",
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
@@ -142,6 +170,7 @@
             "content_position": "bottom_left",
             "mask_color": "#000000",
             "btn_text": "VER PRODUTOS",
+            "btn_url": "/",
             "btn_text_color": "#ffffff",
             "mask_opacity": 2,
             "title": "Cantinho do Café",

@@ -5,16 +5,16 @@
   },
   "links_1": {
     "list_pages": true,
-    "title": "Páginas",
+    "title": "Institucional",
     "list": []
   },
   "links_2": {
     "list_categories": true,
-    "title": "Categorias",
+    "title": "Produtos",
     "list": []
   },
   "contacts": {
-    "title": "Contatos",
+    "title": "Siga a Casa Ogni",
     "phone_wpp": true,
     "socials": true,
     "email": true,
@@ -37,5 +37,5 @@
     "hipercard": true,
     "boleto": true
   },
-  "credits": ""
+  "credits": "CASA OGNI | CNPJ: 99.999.999/9999-00 © Todos os direitos reservados. 2023"
 }
