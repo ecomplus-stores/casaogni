@@ -8,6 +8,9 @@
   "meta_description": "Esta loja é um JAMstack PWA",
   "sections": [
     {
+      "type": "page-title"
+    },
+    {
       "type": "custom-content",
       "markdown": "Progressive Web App (PWA) é uma criação da da Google que permite a criação de aplicações que são um meio termo entre uma página web e um aplicativo nativo. Nosso Storefront padrão é um PWA!\n\nCom o grande aumento de tráfego mobile no e-commerce um PWA commerce traz enormes vantagens. Veja abaixo as principais vantagens e com alguns exemplos de sucesso com estudos de caso feitos pelo Google"
     },
