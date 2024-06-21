@@ -13,6 +13,7 @@ if (!content.sections || !content.sections.length) {
 } else if (!content.sections.find(({ type }) => type === 'extra-page')) {
   content.sections.push({ type: 'extra-page' })
 }
+
 %>
 
 <%- await include('@/view') %>

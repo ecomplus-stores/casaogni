@@ -4,21 +4,12 @@ const themeCustom = _.settings.theme.custom || ''
 
 if (Array.isArray(posts) && posts.length) {
   %>
-  <section class="category-description my-2 my-lg-2">
-    <div class="container">
-      <div class="html-clearfix">
-        <%= _.state.meta_description %>
-      </div>
-      <hr>
-    </div>
-  </section>
-
     <div class="blog my-4 my-lg-5">
       <div class="container">
         <div class="row">
           <%
           const postsList = []
-          posts.forEach(slug => { 
+          posts.slice(0,3).forEach(slug => { 
             const post = (_.cms(`posts/${slug}`))
             post.slug = slug
             postsList.push(post)

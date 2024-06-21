@@ -17,6 +17,9 @@ if (!content.sections || !content.sections.length) {
 } else if (!content.sections.find(({ type }) => type === 'blog-post')) {
   content.sections.push({ type: 'blog-post' })
 }
+
+
+
 %>
 
 <%- await include('@/view') %>

@@ -639,6 +639,20 @@ export default options => {
           widget: 'number'
         }
       ]
+    },
+    {
+      label: '[ALPIX] - Blog - Share',
+      name: 'apx_blog-share',
+      widget: 'object',
+      fields: [
+        {
+          label: 'Ativo',
+          required: false,
+          name: 'enabled',
+          widget: 'boolean',
+          default:false
+        }        
+      ]
     }
     
 ])

@@ -1,8 +1,19 @@
 <%
 const title = opt.title || _.state.title || _.state.name
 if (title) {
+  
   %>
-  <div class="page-title container mt-4 mb-4 mb-lg-5">
+  <div class="page-title  mt-4 mb-2 mb-lg-2">
+    <div class="container">
+    <% 
+    if(_.route.collection == "posts"){
+    const postDate = _.ecomUtils.formatDate(_.state.date) 
+    
+    %>
+      <div class="post-date">
+        Publicado em <%= postDate %>
+      </div>    
+    <% } %>
     <div class="page-title__head">
       <% if (_.state.logo && _.state.logo.url) { %>
         <img
@@ -15,6 +26,21 @@ if (title) {
         <%= title %>
       </h1>
     </div>
+    <% 
+    if(_.route.collection == "posts"){
+      
+    %>
+      <div class="post-image">
+        <% if (_.state.thumbnail) { %>
+            <img
+              src="<%= _.assetsPrefix || '' %><%= _.state.thumbnail %>"
+              class="w-100"
+              alt="<%= _.state.title %>"
+            >
+      
+        <% } %>
+      </div>    
+    <% } %>
     <%
     const description = opt.description || _.state.short_description
     if (description) {
@@ -23,5 +49,6 @@ if (title) {
         <%= description %>
       </div>
     <% } %>
+    </div>
   </div>
 <% } %>

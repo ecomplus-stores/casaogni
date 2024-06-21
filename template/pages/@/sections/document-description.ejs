@@ -1,9 +1,10 @@
 <%
+const apx_categories = _.cms('apx_categories') || {}
 if (_.state.body_html) {
   const className = _.route.resource === 'categories' ? 'category'
     : _.route.resource.slice(0, -1)
   %>
-  <section class="<%= className %>-description my-4 my-lg-5">
+  <section class="<%= className %>-description my-2 my-lg-2">
     <div class="container">
       <div class="html-clearfix">
         <%- _.state.body_html %>
@@ -11,3 +12,28 @@ if (_.state.body_html) {
     </div>
   </section>
 <% } %>
+<section class="apx_categories--sections">
+<%
+if (Array.isArray(apx_categories) && apx_categories.length > 0) {      
+  apx_categories.forEach(item => { 
+    const lib = (_.cms(`apx_categories/${item}`))
+    if(lib.category_id == _.state._id){
+      const { sections } = lib
+      //const { sections } = _.state
+      if (Array.isArray(sections)) {
+        for (let i = 0; i < sections.length; i++) {          
+          const opt = sections[i]
+          //console.log(opt,`@/sections/${opt.type}`)
+          
+          %>
+          
+          <%- //await include(`@/sections/${opt.type}`, { _, opt }) %>
+          
+          <%          
+        }
+      }      
+    }   
+  })
+}
+%>
+</section>
