@@ -686,8 +686,14 @@ export default options => {
         slug: '{{slug}}',
         fields: [
           {
+            label: "Título",
+            hint:"Apenas para identificação no painel",
+            name: "title",
+            widget: "string"          
+          },
+          {
             label: 'Identificador',
-            name: 'title',
+            name: 'category_id',
             widget: 'select',
                 multiple: true,
                 options: [
