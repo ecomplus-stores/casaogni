@@ -695,7 +695,7 @@ export default options => {
             label: 'Identificador',
             name: 'category_id',
             widget: 'select',
-                multiple: true,
+                multiple: false,
                 options: [
                   ...options.state.routes
                   .filter(el => el.resource === 'categories')
