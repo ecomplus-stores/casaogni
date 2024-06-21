@@ -109,29 +109,7 @@
           </div>
 
           <template v-else>
-            <slot name="prices">
-              <p class="product__prices">
-                <a-prices
-                  :product="ghostProductForPrices"
-                  :is-literal="true"
-                  :is-big="true"
-                  @fix-price="price => fixedPrice = price"
-                />
-
-                <slot
-                  name="discount-tag"
-                  v-bind="{ discount }"
-                >
-                  <span
-                    v-if="discount > 0"
-                    class="product__discount"
-                  >
-                    {{ i19discountOf }}
-                    <strong>{{ discount }}%</strong>
-                  </span>
-                </slot>
-              </p>
-            </slot>
+            
 
             <slot
               name="variations"
@@ -179,7 +157,29 @@
                 >
               </div>
             </slot>
+            <slot name="prices">
+              <p class="product__prices">
+                <a-prices
+                  :product="ghostProductForPrices"
+                  :is-literal="true"
+                  :is-big="true"
+                  @fix-price="price => fixedPrice = price"
+                />
 
+                <slot
+                  name="discount-tag"
+                  v-bind="{ discount }"
+                >
+                  <span
+                    v-if="discount > 0"
+                    class="product__discount"
+                  >
+                    {{ i19discountOf }}
+                    <strong>{{ discount }}%</strong>
+                  </span>
+                </slot>
+              </p>
+            </slot>
             <div
               v-if="isKit"
               class="product__kit"
@@ -321,16 +321,17 @@
                 </a>
               </div>
             </slot>
-
-            <slot name="share">
-              <a-share
-                v-if="body.slug"
-                class="mb-3"
-                :url="`/${body.slug}`"
-                :title="body.name"
-                :description="body.short_description"
-              />
-            </slot>
+            <div class="theme-share">
+              <slot name="share">
+                <a-share
+                  v-if="body.slug"
+                  class="mb-3"
+                  :url="`/${body.slug}`"
+                  :title="body.name"
+                  :description="body.short_description"
+                />
+              </slot>
+            </div>
 
             <transition enter-active-class="animated fadeInUp">
               <slot

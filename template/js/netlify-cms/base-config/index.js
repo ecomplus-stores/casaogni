@@ -677,6 +677,37 @@ export default options => {
       getExtraPages(options),
       getWidgets(options),
       {
+        name: 'apx_categories',        
+        label: '[alpix.dev] - Categorias',
+        description: 'Adicione blocos de conteúdo em categorias especificas',
+        folder: `${options.baseDir}content/apx_categories`,
+        extension: 'json',
+        create: true,
+        slug: '{{slug}}',
+        fields: [
+          {
+            label: 'Identificador',
+            name: 'identificador',
+            widget: 'select',
+                multiple: true,
+                options: [
+                  ...options.state.routes
+                  .filter(el => el.resource === 'categories')
+                  .map((el) => ({
+                    label: 'Categoria - ' + el.name,
+                    value: el._id
+                  }))
+                ]                
+          },
+          {
+            label: 'Seções',
+            name: 'sections',
+            widget: 'list',
+            types: options.sections
+          }
+        ]
+      },
+      {
         name: 'apx_tags',        
         label: '[alpix.dev] - Produtos - Tags ',
         description: 'Adicione tags ou selos nos produtos',
@@ -743,111 +774,7 @@ export default options => {
           }
         ]
       },
-      {
-        name: 'apx_properties',        
-        label: '[alpix.dev] - Características',
-        description: 'Adicione imagens, ícones e/ou descrições nos filtros de características',
-        folder: `${options.baseDir}content/apx_properties`,
-        extension: 'json',
-        create: true,
-        slug: '{{slug}}',
-        fields: [
-          {
-            label: "Nome da Característica",
-            hint:"Exatamente como cadastrado no painel E-com.plus",
-            name: "title",
-            widget: "string"          
-          }, 
-          {
-            label: "Descrição",
-            name: "description",
-            widget: "string",
-            required:false,          
-          }, 
-          {
-            label: 'Imagem ou ícone',
-            name: 'img',
-            widget: 'image',
-            required:false,
-          },   
-          {
-            label: 'Cor 1',
-            name: 'color_1',
-            widget: 'color',
-            required:false,
-          },   
-          {
-            label: 'Cor 2',
-            name: 'color_2',
-            widget: 'color',
-            required:false,
-          },   
-          {
-            label: 'Cor 3',
-            name: 'color_3',
-            widget: 'color',
-            required:false,
-          },   
-        ]
-      },
-      {
-        name: 'apx_products_content',        
-        label: '[alpix.dev] - Produtos - Abas de Conteúdo',
-        description: '',
-        folder: `${options.baseDir}content/apx_products_content`,
-        extension: 'json',
-        create: true,
-        slug: '{{slug}}',
-        fields: [
-          {
-            label: "Título do Registro",
-            hint:"Campo apenas informativo.",
-            name: "title",
-            widget: "string"          
-          }, 
-          {
-            label: 'Identificador [SKU] [Categoria] ou [default]',
-            name: 'identificador',
-            widget: 'select',
-                multiple: true,
-                options: [
-                  {label: 'Default / Padrão / Todos os Produtos',
-                value: 'default'},
-                  ...options.state.routes
-                  .filter(({ sku }) => typeof sku === 'string')
-                  .map(({ sku }) => ({
-                    label: 'Produto - ' + sku,
-                    value: sku
-                  })),
-                  ...options.state.routes
-                  .filter(el => el.resource === 'categories')
-                  .map((el) => ({
-                    label: 'Categoria - ' + el.name,
-                    value: 'cat_'+el._id
-                  }))
-                ]                
-          }, 
-          {
-            label:"Abas de Conteúdo",
-            name:"list",
-            widget:"list",
-            required:false,
-            fields: [
-              {
-                label: "Título",
-                name: "title",
-                widget: "string"          
-              }, 
-              {
-                label: "Conteúdo",
-                name: "content",
-                widget: "markdown",
-                required:false,          
-              }              
-            ]
-          },
-        ]
-      },  
+      
       {
         label: "[alpix.dev]",
         name: "alpix",

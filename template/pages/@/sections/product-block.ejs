@@ -84,15 +84,27 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
           <% } %>
           <!-- Custom additional code on bottom of images gallery -->
         </div>
-
-        <div class="col">
+        
+        <div class="col offset-md-1">
           <h1 class="product__name">
             <%= _.ecomUtils.name(_.state) %>
           </h1>
-          <p class="product__sku">
-            COD: <%= _.state.sku %>
-          </p>
-
+          <div class="product__stripe d-flex justify-content-between align-items-center">
+            <p class="product__sku">
+              COD: <%= _.state.sku %>
+            </p>
+            <% if(_.state.brands){ %>
+            <p class="product__brands">
+              Marca: <a href="/<%= _.state.brands[0].slug %>"><%= _.state.brands[0].name %></a>
+            </p>
+            <% } %>
+            <button type="button" class="apx__wishlist--add">
+              <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99609 3.49589C5.8298 2.1324 3.88493 1.76562 2.42365 3.01417C0.962374 4.26272 0.756646 6.35024 1.9042 7.8269C2.85831 9.05465 5.74578 11.6441 6.69214 12.4822C6.79802 12.5759 6.85096 12.6228 6.91271 12.6412C6.9666 12.6573 7.02557 12.6573 7.07947 12.6412C7.14122 12.6228 7.19416 12.5759 7.30003 12.4822C8.24639 11.6441 11.1339 9.05465 12.088 7.8269C13.2355 6.35024 13.0549 4.24959 11.5685 3.01417C10.0821 1.77876 8.16238 2.1324 6.99609 3.49589Z" stroke="#4F4F4F" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Adicionar a lista de desejos
+            </button>
+          </div>
           <div id="product-actions">
             <div id="product-loading">
               <% if (_.state.available && _.state.visible && _.ecomUtils.inStock(_.state)) { %>
@@ -162,17 +174,10 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
                   <% } %>
                 >
                   <div data-slot="buy-button-content">
-                    <i class="i-shopping-bag mr-1"></i>
-                    <% if (_.state.kit_composition && _.state.kit_composition.length) { %>
-                      <%= _.dictionary('buyKit') %>
-                    <% } else { %> 
-                      <% let buyText %>
-                      <% if (Array.isArray(_.widgets)) { %>
-                        <% const productWidget = _.widgets.find(item => item.pkg === '@ecomplus/widget-product') %>
-                        <% buyText = productWidget && productWidget.options.buyText %>
-                      <% } %>
-                      <%= buyText || _.dictionary('buy') %>
-                    <% } %>
+                    Adicionar ao Carrinho                    
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.6662 11.3333C22.6662 12.8362 22.0691 14.2776 21.0064 15.3403C19.9437 16.403 18.5024 17 16.9995 17C15.4966 17 14.0553 16.403 12.9926 15.3403C11.9299 14.2776 11.3328 12.8362 11.3328 11.3333M5.14656 10.4853L4.15489 22.3853C3.94186 24.9417 3.83534 26.2199 4.26747 27.2059C4.64714 28.0723 5.30496 28.7872 6.13676 29.2375C7.0835 29.75 8.36613 29.75 10.9314 29.75H23.0676C25.6329 29.75 26.9155 29.75 27.8622 29.2375C28.694 28.7872 29.3519 28.0723 29.7315 27.2059C30.1637 26.2199 30.0571 24.9417 29.8441 22.3853L28.8524 10.4853C28.6691 8.28573 28.5775 7.18595 28.0904 6.35355C27.6615 5.62054 27.0228 5.03285 26.2567 4.66628C25.3867 4.25 24.2831 4.25 22.0759 4.25L11.9231 4.25C9.71588 4.25 8.61229 4.25 7.74231 4.66628C6.97622 5.03285 6.33752 5.62054 5.90859 6.35354C5.4215 7.18595 5.32985 8.28573 5.14656 10.4853Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                   </div>
                 </button>
               </div>
@@ -197,6 +202,101 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
     }) %>
   </div>
 </div>
+
+<section id="product-tabs">
+  <div class="container">
+    <ul class="tabs">
+      <% if (_.state.body_html) { %>
+        <li>          
+          <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_105_1653)">
+            <path d="M0 0.5V30.5H30C13.4314 30.5 0 17.0686 0 0.5Z" fill="#F18E6A"/>
+            <path d="M14.9995 15.4995C14.9995 7.21569 21.7152 0.5 30 0.5H0C0 17.0686 13.4314 30.5 30 30.5C21.7162 30.5 15.0005 23.7843 15.0005 15.5005L14.9995 15.4995Z" fill="#EED6C7"/>
+            <path d="M14.9995 15.4995C14.9995 23.7832 21.7152 30.4989 29.999 30.4989V0.5C21.7152 0.5 14.9995 7.21569 14.9995 15.4995Z" fill="#4F3C35"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_105_1653">
+            <rect width="30" height="30" fill="white" transform="translate(0 0.5)"/>
+            </clipPath>
+            </defs>
+          </svg>
+  
+          Sobre o produto
+        </li>  
+      <% } %>
+      <% if (_.state.specifications) { %>
+        <li>
+          <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_153_3373)">
+            <path d="M0 30.5H30V0.5C30 17.0686 16.5686 30.5 0 30.5Z" fill="#EED6C7"/>
+            <path d="M30 0.5H0C8.28377 0.5 14.9995 7.21569 14.9995 15.4995C14.9995 23.7832 8.28377 30.5 0 30.5C16.5686 30.5 30 17.0686 30 0.5Z" fill="#C06143"/>
+            <path d="M14.9995 15.4995C14.9995 7.21569 8.28377 0.5 0 0.5V30.5C8.28377 30.5 14.9995 23.7843 14.9995 15.5005V15.4995Z" fill="#4F3C35"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_153_3373">
+            <rect width="30" height="30" fill="white" transform="translate(0 0.5)"/>
+            </clipPath>
+            </defs>
+            </svg>
+  
+          Características
+        </li>
+      <% } %>        
+    </ul>
+    <div class="tab_description">
+      <% if (_.state.body_html) { %>
+        <section id="product-description" class="product-description">
+          <div class="container">
+            <div class="html-clearfix">
+              <%- _.state.body_html.replace(
+                /<img ([^/>]+)?src=['"]([^'"]+)['"]([^/>]+)?\/?>/g,
+                '<img class="lozad" data-src="$2" $1 $3>'
+              ).replace(
+                /<img class="lozad" data-src="([^'"]+)"([^>]+)class=['"]([^'"]+)['"]([^/>]+)?>/g,
+                '<img class="lozad $3" data-src="$1" $2 $4>'
+              ) %>
+            </div>
+          </div>
+        </section>
+      <% } %>
+      
+      <%- await include('@/helpers/widgets-append', {
+        _, opt: {}, field: 'productDescriptionAppend'
+      }) %>
+    </div>
+    <div class="tab_specs">
+      <% if (_.state.specifications) { %>
+        <section id="product-specs" class="product-specs">
+          <div class="container">
+            <div class="row">
+            
+                <% for (const gridId in _.state.specifications) {
+                  
+                  if (_.state.specifications[gridId]) {
+                    %>
+                    <div class="col-auto">
+                      <div class="d-flex align-items-center justify-content-center flex-column spec_item mr-3">
+                        <strong class="text-muted">
+                          <%= _.ecomUtils.gridTitle(gridId, _.grids) %>
+                        </strong>
+                        <span>
+                          <%= _.ecomUtils.specTextValue(_.state, gridId, _.grids) %>
+                        </span>
+                      </div>
+                    </div>
+                    <%
+                  }
+                  
+                } %>
+              
+            </div>
+          </div>
+        </section>
+      <% } %>
+    </div>
+  </div>
+  
+</section>
 
 <%
 const productJsonLd = {
