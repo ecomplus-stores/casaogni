@@ -687,7 +687,7 @@ export default options => {
         fields: [
           {
             label: 'Identificador',
-            name: 'identificador',
+            name: 'title',
             widget: 'select',
                 multiple: true,
                 options: [
