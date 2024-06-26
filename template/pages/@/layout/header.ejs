@@ -296,11 +296,11 @@ const hasAllDepartments = header.menu_all_departments
           id="search-bar"
         >
           <div class="box">
-            <button class="voice-search">
+            <!-- <button class="voice-search">
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19.6068 10V12C19.6068 15.866 16.4728 19 12.6068 19M5.60681 10V12C5.60681 15.866 8.74082 19 12.6068 19M12.6068 19V22M8.60681 22H16.6068M12.6068 15C10.95 15 9.60681 13.6569 9.60681 12V5C9.60681 3.34315 10.95 2 12.6068 2C14.2637 2 15.6068 3.34315 15.6068 5V12C15.6068 13.6569 14.2637 15 12.6068 15Z" stroke="#AA644B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
+            </button> -->
             <form
               class="header__search"
               id="search-form"
@@ -372,51 +372,8 @@ const hasAllDepartments = header.menu_all_departments
         <% if (categories && categories.length) { %>
           <div class="d-none d-lg-block <%= isCategoriesNavFull ? 'col-12 order-lg-last' : 'col' %> header__nav-block">
             <nav class="header__nav<%= isCategoriesNavFull ? ' header__nav--full' : '' %>">
-              <% if (hasAllDepartments) { %>
-                <div class="d-inline-block">
-                  <a 
-                    href="javascript:;"
-                    class="header__category"
-                    id="cd-all"
-                    onmouseover="toggleSubmenu('all', this)"
-                    onclick="toggleSubmenu('all', this)"
-                  >
-                    <%= header.name_all_departments || _.dictionary('all') %>
-                  </a>
-                  <nav class="header__submenu header__submenu--full" id="s-all">
-                    <div class="row">
-                      <% _.categories.forEach(({ name, slug, parent, _id }) => { %>
-                        <% if (!parent) { 
-                          %>
-                          <div class="col-12 col-lg-<%- isCategoriesNavFull ? '2' : '4' %>">
-                            <a 
-                              id="sd-all-<%= _id %>" 
-                              href="/<%= slug %>"
-                            >
-                              <%= name %>
-                            </a>
-                          <% const subcategories = _.categories.filter(({ parent }) => parent && parent.slug === slug) %>
-                          <% if (subcategories.length) { %>
-                            <div id="header__submenu-<%= slug %>">
-                              <ul class="header__links">
-                                <% subcategories.forEach(subcategory => { %>
-                                  <li>
-                                    <a id="td-all-<%= subcategory._id %>" class="header__submenu-subcategory" href="/<%= subcategory.slug %>">
-                                      <%= subcategory.name %>
-                                    </a>
-                                  </li>
-                                  <% }) %>
-                                </ul>
-                              </div>
-                            <% } %>
-                            </div>
-                          <% } %>
-                        <% }) %>
-                      </div>
-                    </nav>
-                </div>
-              <% } %>
-              <% categories.forEach(({ slug, name, _id}) => { %>
+              
+              <% categories.forEach(({ slug, name, _id, icon}) => { %>
                 <% let $categoryLink %>
                 <div class="d-inline-block">
                   <a
@@ -441,8 +398,9 @@ const hasAllDepartments = header.menu_all_departments
                         }
                       %>
                       <nav class="header__submenu<%= fullWidthSubmenu ? ' header__submenu--full' : '' %>" id="<%= `s-${slug.replace(/\//g, '_')}` %>">
+                        <div class="header___links">
                         <% subcategories.forEach(subcategory => { %>
-                          <div>               
+                          <div class="header___link">               
                             <a id="sd-<%= subcategory._id %>" href="/<%= subcategory.slug %>"><%= subcategory.name %></a>
                             <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
                             <%
@@ -457,8 +415,16 @@ const hasAllDepartments = header.menu_all_departments
                                 <%= thirdCategory.name %>
                               </a>
                             <% }) %>
-                          </div>
+                          </div>                        
                         <% }) %>
+                        </div>
+                        <% if(icon){ %>
+                          <div class="header__icon-bn">
+                            <a href="<%- slug %>">
+                              <img src="<%= icon.url %>"/>
+                            </a>
+                          </div>
+                        <% } %>
                       </nav>
                     <% } %>
                   <% } %>

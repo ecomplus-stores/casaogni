@@ -59,7 +59,7 @@
       "spacing": {
         "container": "container-fluid",
         "desktop": {
-          "margin_bottom": "3"
+          "margin_bottom": "5"
         }
       }
     },
@@ -210,7 +210,13 @@
           }
         }
       ],
-      "breakline": "false"
+      "breakline": "false",
+      "spacing": {
+        "desktop": {
+          "margin_bottom": "4",
+          "padding_bottom": "2"
+        }
+      }
     },
     {
       "type": "apx_banners-grid",

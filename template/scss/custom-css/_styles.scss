@@ -231,6 +231,7 @@ header.header{
 .apx-list-image{
   .apx-section-title{
     color: var(--c1);
+    border: 0;
     b{display: block;font-size: var(--h2);font-weight: 500;text-decoration: underline;}
   }
   .apx-section-title + p{
@@ -1076,4 +1077,48 @@ body[id^="page-posts"]{
     .share{gap: 1rem;margin-left: 1rem;}
   }
   
+}
+
+nav.header__submenu[style="display: grid;"]{
+  display: flex!important;
+  gap: 3rem;
+  margin: 0;
+  border: 0;
+  border-radius: 0 0 .5rem .5rem;
+  background: #fff;
+  .header___link{
+    a{
+      text-transform: initial;
+      font-size: var(--font-size-sm);
+      margin: 0 0 .75rem 0;
+    }
+  }
+  .header__icon-bn{
+    a{padding: 0;margin: 0;}
+    img{border-radius: .25rem;overflow: hidden;}
+  }
+}
+.header__category:hover{background: transparent;}
+.header__category{position: relative;}
+.header__category:after{
+  background: var(--c2);
+  content: "";
+  height: 0px;
+  position: absolute;
+  width: calc(100% - 40px);
+  left: 20px;
+  bottom: 12px;
+  transition: height .2s ease-in-out
+}
+.header__category:hover:after{
+  height: 2px;
+}
+
+.header__search > button:first-child{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
 }
