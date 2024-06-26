@@ -57,7 +57,10 @@
         }
       ],
       "spacing": {
-        "container": "container-fluid"
+        "container": "container-fluid",
+        "desktop": {
+          "margin_bottom": "3"
+        }
       }
     },
     {
@@ -99,15 +102,15 @@
       ]
     },
     {
-      "type": "collection-shelf",
-      "shuffle": true,
-      "collection_id": null,
-      "sort": "offers",
+      "page": 1,
       "title": "Mais Vendidos",
-      "link": "/lancamentos",
+      "shuffle": true,
       "headless": false,
+      "type": "collection-shelf",
+      "link": "/lancamentos",
       "limit": 12,
-      "page": 1
+      "collection_id": null,
+      "sort": "offers"
     },
     {
       "type": "apx_banner-line",
@@ -170,16 +173,16 @@
       "banners": [
         {
           "desktop": {
-            "mask_opacity": 0,
+            "description_color": "#ffffff",
             "img": "/img/uploads/mesaposta.png",
-            "title": "Mesa Posta",
             "content_order": "inside_image",
             "content_position": "bottom_left",
-            "title_color": "#ffffff",
-            "description_color": "#ffffff",
-            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede.",
             "btn_text": "VER PRODUTOS",
-            "btn_text_color": "#ffffff"
+            "btn_text_color": "#ffffff",
+            "mask_opacity": 0,
+            "title": "Mesa Posta",
+            "title_color": "#ffffff",
+            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
             "mask_opacity": 0
@@ -191,10 +194,10 @@
             "animate": "fadeInUp",
             "img": "/img/uploads/cantinhodocafe.png",
             "content_order": "inside_image",
+            "btn_url": "/",
             "content_position": "bottom_left",
             "mask_color": "#000000",
             "btn_text": "VER PRODUTOS",
-            "btn_url": "/",
             "btn_text_color": "#ffffff",
             "mask_opacity": 2,
             "title": "Cantinho do Café",
