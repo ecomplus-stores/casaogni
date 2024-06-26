@@ -60,6 +60,9 @@
         "container": "container-fluid",
         "desktop": {
           "margin_bottom": "5"
+        },
+        "mobile": {
+          "margin_bottom": "4"
         }
       }
     },
@@ -99,7 +102,13 @@
           "link": "/sala-de-estar",
           "title": "Sala de Estar"
         }
-      ]
+      ],
+      "spacing": {
+        
+        "mobile": {
+          "margin_bottom": "5"
+        }
+      }
     },
     {
       "page": 1,

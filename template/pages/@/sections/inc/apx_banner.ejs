@@ -4,6 +4,26 @@ for (let i=0; i < views.length; i++){
   if (opt[views[i]].img) {
     const { width, height } = _.tryImageSize(opt[views[i]].img, opt)
     const sources = [{ src: opt[views[i]].img }]    
+
+    
+    opt.mobile.description_color = opt.mobile.description_color || opt.desktop.description_color
+    opt.mobile.title_color = opt.mobile.title_color || opt.desktop.title_color
+    opt.mobile.btn_background = opt.mobile.btn_background || opt.desktop.btn_background
+    opt.mobile.btn_text_color = opt.mobile.btn_text_color || opt.desktop.btn_text_color
+    opt.mobile.mask_color = opt.mobile.mask_color || opt.desktop.mask_color
+    opt.mobile.mask_opacity = opt.mobile.mask_opacity || opt.desktop.mask_opacity
+    opt.mobile.content_order = opt.mobile.content_order || opt.desktop.content_order
+    opt.mobile.content_position = opt.mobile.content_position || opt.desktop.content_position
+    opt.mobile.title = opt.mobile.title || opt.desktop.title
+    opt.mobile.description = opt.mobile.description || opt.desktop.description
+    opt.mobile.btn_text = opt.mobile.btn_text || opt.desktop.btn_text
+    opt.mobile.btn_url = opt.mobile.btn_url || opt.desktop.btn_url
+    opt.mobile.btn_text_2 = opt.mobile.btn_text_2 || opt.desktop.btn_text_2
+    opt.mobile.btn_url_2 = opt.mobile.btn_url_2 || opt.desktop.btn_url_2
+    opt.mobile.link = opt.mobile.link || opt.desktop.link
+    opt.mobile.alt = opt.mobile.alt || opt.desktop.alt
+    opt.mobile.img = opt.mobile.img || opt.desktop.img
+    
     %>
     
     <div class="banner d-md-<%= views[i] == 'desktop' ? 'block' : 'none'%> d-<%= views[i] == 'mobile' ? 'block' : 'none'%>">
