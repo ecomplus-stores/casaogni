@@ -5,8 +5,9 @@ for (let i=0; i < views.length; i++){
     const { width, height } = _.tryImageSize(opt[views[i]].img, opt)
     const sources = [{ src: opt[views[i]].img }]    
     %>
-    <div class="banner">
-        <div class="d-md-<%= views[i] == 'desktop' ? 'block' : 'none'%> d-<%= views[i] == 'mobile' ? 'block' : 'none'%>">
+    
+    <div class="banner d-md-<%= views[i] == 'desktop' ? 'block' : 'none'%> d-<%= views[i] == 'mobile' ? 'block' : 'none'%>">
+        <div class="banner-box">
           <div class="<%= opt[views[i]].animate %> <%= opt[views[i]].content_position %> <%= opt[views[i]].content_order %>" style="
             --mask:<%= opt[views[i]].mask_opacity || 0 %>; 
             --mask_color: <%= opt[views[i]].mask_color || 'transparent'%>;
