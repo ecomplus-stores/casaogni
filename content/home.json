@@ -194,7 +194,10 @@
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
-            "mask_opacity": 0
+            "mask_opacity": 0,
+            "title_color": "#493C35",
+            "description_color": "#493C35",
+            "btn_text_color": "#493C35"
           }
         },
         {
@@ -215,7 +218,10 @@
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
-            "mask_opacity": 0
+            "mask_opacity": 0,
+            "title_color": "#493C35",
+            "description_color": "#493C35",
+            "btn_text_color": "#493C35"
           }
         }
       ],
@@ -249,7 +255,10 @@
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
-            "mask_opacity": 0
+            "mask_opacity": 0,
+            "title_color": "#493C35",
+            "description_color": "#493C35",
+            "btn_text_color": "#493C35"
           }
         }
       ]

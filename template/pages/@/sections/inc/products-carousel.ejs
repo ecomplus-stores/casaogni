@@ -37,7 +37,7 @@
 
       <% if (opt.title || opt.collection) { %>
         <% if (link) { %>
-          <a href="<%= link %>" class="d-flex">
+          <a href="<%= link %>" class="d-md-flex d-none">
             Ver Todos
             <i class="svg-ico">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,9 +106,23 @@
             ></button>
           <% } %>
         </div>
-    </div>
       </div>
     </div>
+    <% if (opt.title || opt.collection) { %>
+      <% if (link) { %>
+        <div class="mobile-see-all">
+          <a href="<%= link %>" class="d-flex d-md-none">
+            Ver Todos
+            <i class="svg-ico">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.66669 8H13.3334M13.3334 8L9.33335 4M13.3334 8L9.33335 12" stroke="#4F4F4F" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </i>
+          </a>
+        </div>
+      <% } %>
+    <% } %>
+  </div>
 
   
   </div>  

@@ -14,7 +14,7 @@
       <div class="<%= opt.spacing?.container || `container`%> ">
         <div class="row breakline-<%= opt.breakline %> grid-type-<%= opt.grid %>">
           <% for (let i = 0; i < opt.banners.length; i++) { %>
-            <div class="item col-auto">
+            <div class="item col-md-auto col-12">
               <%- await include('@/sections/inc/apx_banner', { _, opt: opt.banners[i] }) %>          
             </div>
           <% } %>

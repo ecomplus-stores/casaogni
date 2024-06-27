@@ -584,8 +584,8 @@ header.header{
     right: 1rem;
     transform: unset;
     .glide__bullet{
-      height: .75rem;
-      width: .75rem;
+      height: .5rem;
+      width: .5rem;
       border-radius: 1rem;
       border: 0;
       background: var(--c2);
@@ -1269,9 +1269,117 @@ nav.header__submenu[style="display: grid;"]{
       }
 
     }
+    .glide__bullets{
+      background: #fff;
+      padding: .20rem .3rem;
+      border-radius: .75rem;
+      bottom: .5rem;
+      left: 50%;
+      margin: 0;
+      right: auto;
+      translate: -50% 0;
+      transform: unset;
+      border: 1px solid #f2f2f2;
+      .glide__bullet{
+        height: .5rem;
+        width: .5rem;
+        border-radius: 1rem;
+        border: 0;
+        background: #ED5A25;
+        opacity: .3;
+        
+        
+      }
+      .glide__bullet.glide__bullet--active{
+        background: #ED5A25;
+        opacity: 1;
+        
+      }
+    }
+  }
+  .apx_banners-grid{
+    .item{flex: 0 0 100%!important;}
+    .col-image{
+      img{
+        height: auto!important;
+        width: 100%!important;
+      }
+    }
+    .content{
+      padding-left: 0!important;
+      padding-right: 0!important;
+      max-width: 100%;
+      width: 100%;
+    }
+    .inside_image{
+      .content{
+        position: relative;
+      }
+    }
+  }
+
+  footer.footer{
+    padding: .75rem;
+    background-image:unset;
+    svg{height: 40px;margin-bottom: 1rem;}
+    .newsletter{
+      .row{justify-content: center;}
+      h4,p{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      form{
+        display: flex;
+        flex-direction: column;
+        button{
+          width: 100%;
+        }
+      }
+    }
+    .footer__title{
+      border: 0;
+      font-size: 16px;
+      margin: 0;
+    }
+    .footer__links{
+      a{
+        font-size: 16px;
+      }
+    }
+    .footer__social{margin-top: .75rem;}
+    .footer__social + ul{
+      li{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+    .footer__credits{
+      border-top: 1px solid #f2f2f2;
+      .col-md{
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .ecom-credits{
+        justify-content: center!important;
+      }
+    }
   }
 }
-
+.pay-icon{background-color: #fff;border-radius: 3px;}
+.mobile-see-all a{
+  line-height: 38px;
+  border: 1px solid;
+  border-radius: 2rem;
+  text-align: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 0 1.5rem;
+  margin: 1rem auto;  
+  gap:5px
+  
+}
 aside.menu{
   width: 320px;
   max-width: 100%;
