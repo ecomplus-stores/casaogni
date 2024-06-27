@@ -14,26 +14,23 @@ if (_.state.body_html) {
 <% } %>
 <section class="apx_categories--sections">
 <%
-if (Array.isArray(apx_categories) && apx_categories.length > 0) {      
-  apx_categories.forEach(item => { 
+if (Array.isArray(apx_categories)) {
+  for (let i = 0; i < apx_categories.length; i++) {
+    const item = apx_categories[i]
     const lib = (_.cms(`apx_categories/${item}`))
-    if(lib.category_id == _.state._id){
+    if (lib.category_id == _.state._id) {
       const { sections } = lib
       //const { sections } = _.state
       if (Array.isArray(sections)) {
-        for (let i = 0; i < sections.length; i++) {          
+        for (let i = 0; i < sections.length; i++) {
           const opt = sections[i]
-          //console.log(opt,`@/sections/${opt.type}`)
-          
           %>
-          
-          <%- //await include(`@/sections/${opt.type}`, { _, opt }) %>
-          
-          <%          
+          <%- await include(`@/sections/${opt.type}`, { _, opt }) %>
+          <%
         }
-      }      
-    }   
-  })
+      } 
+    }
+  }
 }
 %>
 </section>
