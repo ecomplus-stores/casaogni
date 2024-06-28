@@ -104,7 +104,6 @@
         }
       ],
       "spacing": {
-        
         "mobile": {
           "margin_bottom": "5"
         }
@@ -197,7 +196,8 @@
             "mask_opacity": 0,
             "title_color": "#493C35",
             "description_color": "#493C35",
-            "btn_text_color": "#493C35"
+            "btn_text_color": "#493C35",
+            "img": "/img/uploads/rectangle-8-2-.png"
           }
         },
         {
@@ -221,7 +221,8 @@
             "mask_opacity": 0,
             "title_color": "#493C35",
             "description_color": "#493C35",
-            "btn_text_color": "#493C35"
+            "btn_text_color": "#493C35",
+            "img": "/img/uploads/rectangle-8-3-.png"
           }
         }
       ],
@@ -258,7 +259,8 @@
             "mask_opacity": 0,
             "title_color": "#493C35",
             "description_color": "#493C35",
-            "btn_text_color": "#493C35"
+            "btn_text_color": "#493C35",
+            "img": "/img/uploads/rectangle-8-4-.png"
           }
         }
       ]
