@@ -12,6 +12,32 @@ if(client.display_name){
   $(`[data-islogged]`).hide()
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  $('#product-tabs .tabs li').click(function(){
+    $('#product-tabs .tabs li').removeClass('active')
+    $(this).addClass('active')
+    let data = $(this).attr(`data-tab`);
+    $('#product-tabs .tabs ~ .tab').removeClass(`active`)
+    $(`.tab_${data}`).addClass(`active`);
+  });
+  $('#product-tabs .tabs li').first().click();
+
+
+
+  function checkScrollPosition() {
+    if ($(window).scrollTop() > 0) {
+        $('body').addClass('header-moved');
+    } else {
+        $('body').removeClass('header-moved');
+    }
+  }
+  checkScrollPosition();
+
+  $(window).scroll(function() {
+      checkScrollPosition();
+  });
+});
+
 
 
 //BUSCA POR VOZ

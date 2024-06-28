@@ -7,8 +7,8 @@ import {
 } from '@ecomplus/i18n'
 
 import { i18n } from '@ecomplus/utils'
-import ABackdrop from '@ecomplus/storefront-components/src/ABackdrop.vue'
-import SearchEngine from '@ecomplus/storefront-components/src/SearchEngine.vue'
+import ABackdrop from '../ABackdrop.vue'
+import SearchEngine from '../SearchEngine.vue'
 
 export default {
   name: 'InstantSearch',
@@ -69,12 +69,6 @@ export default {
   methods: {
     hide () {
       this.$emit('update:is-visible', false)
-      const $toggleSearch = $('#m-toggleSearch')
-
-      if ($toggleSearch.length) {
-       $toggleSearch.removeClass('active')     
-      }
-      
     },
 
     setSearchTerm (term) {
@@ -138,31 +132,5 @@ export default {
       },
       immediate: true
     }
-  },
-  mounted() {
-    const $input = $('#search-input-m')
-    const $toggleSearch = $('#m-toggleSearch')
-    if ($input.length) {
-      $input.on('click', () => {
-        this.$emit('update:is-visible', true)
-        $toggleSearch.addClass('active')        
-      })
-    }
-
-    const $input2 = $('#search-input')  
-    if ($input2.length) {
-      $input2.on('click', () => {
-        this.$emit('update:is-visible', true)
-      })
-    }
-
-    
-
-    if ($toggleSearch.length) {
-      $toggleSearch.on('click', () => {
-        $toggleSearch.toggleClass('active')        
-        this.$emit('update:is-visible', !this.isVisible)
-      })
-    }
-  },
+  }
 }

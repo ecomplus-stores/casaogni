@@ -1,13 +1,12 @@
 <div class="search">
   <a-backdrop
     :is-visible="isVisible"
-    :class="isVisible ? 'd-block' : 'd-none'"
     @hide="hide"
   />
 
   <transition
-    enter-active-class="animated fadeIn slow"
-    leave-active-class="animated fadeOut slow"
+    enter-active-class="animated zoomIn"
+    leave-active-class="animated fadeOutUp slow"
   >
     <div
       class="search__box card"
@@ -19,40 +18,12 @@
         v-bind="{ isSearching }"
       >
         <header class="search__header card-header">
-          <div class="row apx-side-heading mb-3">
-            <div class="col">
-              <span>Pesquisar</span>
-            </div>
-            <div class="col-auto">
-              <div class="search__status">
-                <div
-                  v-if="isSearching"
-                  class="search__spinner spinner-grow"
-                  role="status"
-                >
-                  <span class="sr-only">Loading...</span>
-                </div>
-                <button
-                  type="button"
-                  class="close"
-                  :aria-label="i19close"
-                  @click="hide"
-                >
-                  
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18M6 6L18 18" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-  
-                </button>
-              </div>
-            </div>
-          </div>
           <div class="search__input-group">
             <input
               type="search"
               autocomplete="off"
               class="search__input form-control form-control-lg"
-              placeholder="O que você procura?..."
+              :placeholder="i19searchProducts"
               ref="input"
               v-model="localTerm"
             >
@@ -61,11 +32,27 @@
               class="search__submit"
               :aria-label="i19search"
             >
-              <span>Buscar</span>
+              <i class="i-search"></i>
             </button>
           </div>
 
-          
+          <div class="search__status">
+            <div
+              v-if="isSearching"
+              class="search__spinner spinner-grow"
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+            <button
+              type="button"
+              class="close"
+              :aria-label="i19close"
+              @click="hide"
+            >
+              <i class="i-times-circle"></i>
+            </button>
+          </div>
         </header>
       </slot>
 
@@ -92,7 +79,7 @@
         </slot>
       </article>
 
-      <footer class="search__footer card-footer" v-if="1 != 1">
+      <footer class="search__footer card-footer">
         <slot
           name="count-results"
           v-bind="{ hasSearched, totalSearchResults }"
