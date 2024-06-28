@@ -1443,6 +1443,7 @@ aside.menu{
     }
   }
 }
+
 body#page-home:not(.header-moved){
   #header.header{
     background: transparent;
@@ -1492,8 +1493,9 @@ body#page-home:not(.header-moved){
 
   }
 }
-
+body#page-home{padding-top:var(--topbar-height)}
 @media(max-width:990px){
+  
   #content .container{
     max-width:95%
   }

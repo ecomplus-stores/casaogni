@@ -13,6 +13,9 @@ if(client.display_name){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  var topbarHeight = document.querySelector('.apx_topbar').offsetHeight;
+  document.body.style.setProperty('--topbar-height', (topbarHeight - 1) + 'px');
+
   $('#product-tabs .tabs li').click(function(){
     $('#product-tabs .tabs li').removeClass('active')
     $(this).addClass('active')
