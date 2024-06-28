@@ -7,8 +7,8 @@ import {
 } from '@ecomplus/i18n'
 
 import { i18n } from '@ecomplus/utils'
-import ABackdrop from '../ABackdrop.vue'
-import SearchEngine from '../SearchEngine.vue'
+import ABackdrop from '@ecomplus/storefront-components/src/ABackdrop.vue'
+import SearchEngine from '@ecomplus/storefront-components/src/SearchEngine.vue'
 
 export default {
   name: 'InstantSearch',
