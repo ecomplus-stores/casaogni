@@ -1,25 +1,25 @@
 {
+  "categories_list": {
+    "featured": [
+      "/casa-moveis-e-decoracao?Casa, Móveis e Decoração"
+    ],
+    "random": 6,
+    "full_width": true
+  },
+  "menu_all_departments": false,
+  "centralized_logo": false,
   "marketing_stripe": {
     "text": "Aproveite nossos descontos de até 50%!",
     "link": "/promotion"
   },
-  "contacts_stripe": {
-    "pages": [
-      
-    ],
-    "phone_wpp": false ,
-    "socials": false
-  },
-  "categories_list": {
-    "featured": [],
-    "random": 6,
-    "full_width": true
-  },
-  "centralized_logo": false,
-  "desktop_megamenu": true,
-  "search_input": true,
   "alphabetical_order_submenu": false,
+  "name_all_departments": "",
+  "search_input": true,
+  "desktop_megamenu": true,
   "full_width_submenu": false,
-  "menu_all_departments": false,
-  "name_all_departments": ""
+  "contacts_stripe": {
+    "pages": [],
+    "phone_wpp": false,
+    "socials": false
+  }
 }
