@@ -1,0 +1,37 @@
+{
+  "icons": [
+    {
+      "src": "/icon_512x512.4a7b53bbb381f9d3825187dabaea8397.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.a27e01ebb390dd497bfcfa50cd675f1c.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.7512729c8d095d2398801bdc7da1f580.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.8e430047c3faa70ee94fff7cb3647c3a.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.0a8c1b303ae8df0980c8972534928a00.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Casa Ogni",
+  "short_name": "Casa Ogni",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "Casa Ogni",
+  "background_color": "#ffffff",
+  "theme_color": "#4f4f4f"
+}
