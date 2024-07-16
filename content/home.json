@@ -74,22 +74,22 @@
       "banners": [
         {
           "img": "/img/uploads/decoracao.png",
-          "link": "/decoracao",
+          "link": "/colecao-decoracao",
           "title": "Decoração"
         },
         {
           "img": "/img/uploads/mesa-posta.png",
-          "link": "/mesa-posta",
+          "link": "/colecao-mesa-posta",
           "title": "Mesa Posta"
         },
         {
           "img": "/img/uploads/banheiro.png",
-          "link": "/banheiro",
+          "link": "/colecao-banheiro",
           "title": "Banheiro"
         },
         {
           "img": "/img/uploads/cantinho-do-cafe.png",
-          "link": "/cantinho-do-cafe",
+          "link": "/colecao-cantinho-do-cafe",
           "title": "Cantinho do Café"
         }
       ],
