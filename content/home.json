@@ -91,16 +91,6 @@
           "img": "/img/uploads/cantinho-do-cafe.png",
           "link": "/cantinho-do-cafe",
           "title": "Cantinho do Café"
-        },
-        {
-          "img": "/img/uploads/rectangle-8.png",
-          "link": "/sala-de-estar",
-          "title": "Sala de Estar"
-        },
-        {
-          "img": "/img/uploads/rectangle-8.png",
-          "link": "/sala-de-estar",
-          "title": "Sala de Estar"
         }
       ],
       "spacing": {
