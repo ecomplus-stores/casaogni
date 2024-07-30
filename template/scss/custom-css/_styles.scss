@@ -1906,7 +1906,9 @@ body#page-home{padding-top:var(--topbar-height)}
 }
 
 .header__search{overflow:visible}
-#header #instant-search{}
+#header #instant-search{
+  .search__footer{display: none;}
+}
 #header #instant-search > .backdrop{display:none;}
 #header #instant-search .search__box.card{
   position: absolute;
