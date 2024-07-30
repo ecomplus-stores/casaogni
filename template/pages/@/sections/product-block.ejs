@@ -98,13 +98,19 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
               Marca: <a href="/<%= _.state.brands[0].slug %>"><%= _.state.brands[0].name %></a>
             </p>
             <% } %>
-            <button type="button" class="apx__wishlist--add">
+            <button type="button" class="apx__wishlist--add" data-id="<%= _.state.id %>">
               <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99609 3.49589C5.8298 2.1324 3.88493 1.76562 2.42365 3.01417C0.962374 4.26272 0.756646 6.35024 1.9042 7.8269C2.85831 9.05465 5.74578 11.6441 6.69214 12.4822C6.79802 12.5759 6.85096 12.6228 6.91271 12.6412C6.9666 12.6573 7.02557 12.6573 7.07947 12.6412C7.14122 12.6228 7.19416 12.5759 7.30003 12.4822C8.24639 11.6441 11.1339 9.05465 12.088 7.8269C13.2355 6.35024 13.0549 4.24959 11.5685 3.01417C10.0821 1.77876 8.16238 2.1324 6.99609 3.49589Z" stroke="#4F4F4F" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               Adicionar a lista de desejos
             </button>
           </div>
+          <% if (_.state.short_description) { %>
+            <p class="product__info mb-4 lead">
+              <%= _.state.short_description %>
+            </p>
+            <hr>
+          <% } %>
           <div id="product-actions">
             <div id="product-loading">
               <% if (_.state.available && _.state.visible && _.ecomUtils.inStock(_.state)) { %>
@@ -184,11 +190,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
             </div>
           </div>
 
-          <% if (_.state.short_description) { %>
-            <p class="product__info mt-3 lead">
-              <%= _.state.short_description %>
-            </p>
-          <% } %>
+         
         </div>
       </div>
 

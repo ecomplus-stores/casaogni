@@ -101,6 +101,17 @@
     },
     {
       "page": 1,
+      "title": "Destaques",
+      "shuffle": true,
+      "headless": false,
+      "type": "collection-shelf",
+      "link": "/lancamentos",
+      "limit": 12,
+      "collection_id": null,
+      "sort": "offers"
+    },
+    {
+      "page": 1,
       "title": "Mais Vendidos",
       "shuffle": true,
       "headless": false,
@@ -161,7 +172,7 @@
       "limit": 12,
       "page": 1,
       "sort": "lowest_price",
-      "title": "Lançamentos",
+      "title": "Recomendamos para você",
       "link": "/lancamentos"
     },
     {
@@ -260,7 +271,7 @@
       "shuffle": false,
       "limit": 12,
       "page": 1,
-      "title": "Os Mais Vistos",
+      "title": "O que outros clientes estão vendo?",
       "sort": "offers"
     }
   ]

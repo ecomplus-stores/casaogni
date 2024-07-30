@@ -4,7 +4,19 @@ const footer = _.cms('footer') || {}
 const contacts = _.cms('contacts') || {}
 const themeCustom = _.settings.theme.custom || ''
 %>
-
+<% if (contacts.whatsapp) { %>
+   
+    <a
+      href="javascript:;"
+      target="_blank"
+      rel="noopener"
+      class="floating-whatsapp-link"
+      data-tel="<%= contacts.whatsapp.replace(/\D/g, '') %>"
+    >
+      <i class="i-whatsapp"></i>
+    </a>
+  
+<% } %>
 <footer class="footer">
   <div class="newsletter py-md-5 pt-3  mb-md-5 mb-4">
     <div class="container">

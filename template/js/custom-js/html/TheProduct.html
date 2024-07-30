@@ -303,7 +303,7 @@
               </div>
             </slot>
 
-            <slot name="favorite">
+            <slot name="favorite" v-if="1 != 1">
               <div>
                 <a
                   class="btn btn-sm product__favorite"
@@ -337,7 +337,7 @@
               <slot
                 name="payment-gateways"
                 v-bind="{ paymentOptions }"
-                v-if="!isQuickview && paymentOptions.length"
+                v-if="!isQuickview && paymentOptions.length && 1 != 1"
               >
                 <article>
                   <div class="product__payment card mb-3">
