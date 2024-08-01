@@ -67,6 +67,34 @@
       }
     },
     {
+      "type": "apx_banners-stripe",
+      "animation": true,
+      "title_color": "#493c35",
+      "description_color": "#4f4f4f",
+      "list": [
+        {
+          "img": "/img/uploads/sale-01.svg",
+          "title": "Ganhe 5% OFF",
+          "description": "paga pagamentos via pix"
+        },
+        {
+          "img": "/img/uploads/marker-pin-04.svg",
+          "title": "Envio Nacional",
+          "description": "para todo o Brasil"
+        },
+        {
+          "img": "/img/uploads/credit-card-02-19-.svg",
+          "title": "Pague Parcelado",
+          "description": "Qualquer compra acima de R$ 120"
+        },
+        {
+          "img": "/img/uploads/truck-01-19-.svg",
+          "title": "Frete Grátis",
+          "description": "para pedidos acima de R$ 399"
+        }
+      ]
+    },
+    {
       "type": "apx_list-images",
       "visibility": "d-block d-md-block",
       "title": "Decore por <b>Ambiente</b>",
