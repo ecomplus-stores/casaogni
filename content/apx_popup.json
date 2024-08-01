@@ -1,8 +1,8 @@
 {
   "image": "/img/uploads/d3c71b565d9666691ffdf392923c0f34.jpg",
-  "title": "5% de desconto",
-  "description": "Assine nossa newsletter e ganhe 5% de desconto em sua primeira compra. O cupom chegará em seu e-mail",
   "code": {
-    "code": "<form>\n<input type=\"email\">\n<button type=\"submit\">Assinar</button>\n</form>"
-  }
+    "code": "<form>\n                    <div class=\"form-group\">\n                        <label for=\"email\">Email</label>\n                        <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Digite seu email\">\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-primary\">Assinar</button>\n                </form>"
+  },
+  "title": "Parabéns!",
+  "description": "Assinando nossa newsletter você pode ganhar um cupom de <b>5% de desconto</b> para sua primeira compra.<br><br>O cupom vai chegar no seu e-mail em breve!"
 }
