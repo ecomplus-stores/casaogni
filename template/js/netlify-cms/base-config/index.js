@@ -462,7 +462,64 @@ export default options => {
         ...spacer,
         ...bannerFields]
     },
-    
+    {
+      label: '[ALPIX] - Tarja de Vantagens',
+      name: 'apx_banners-stripe',
+      widget: 'object',
+      fields: [
+        {
+          label: 'Cor do título',
+          required: false,
+          name: 'title_color',
+          widget: 'color'
+        },
+        {
+          label: 'Cor da descrição',
+          required: false,
+          name: 'description_color',
+          widget: 'color'
+        },
+        {
+          label: 'Animado',
+          required: false,
+          name: 'animation',
+          widget: 'boolean',
+          default:false
+        },
+        {
+          label: 'Lista',
+          name: 'list',
+          widget: 'list',
+          fields: [
+            {
+              label: 'Imagem',
+              name: 'img',
+              widget: 'image'
+            },
+            {
+              label: 'Link',
+              required: false,
+              name: 'link',
+              widget: 'string'
+            },
+            {
+              label: 'Título',
+              required: false,
+              name: 'title',
+              widget: 'string'
+            },
+            
+            {
+              label: 'Descrição',
+              required: false,
+              name: 'description',
+              widget: 'string'
+            },
+            
+          ]
+        }
+      ]
+    },
     {
       label: '[ALPIX] - Grid de Banners',
       name: 'apx_banners-grid',
@@ -846,33 +903,37 @@ export default options => {
               ]
           },
           {
-              name: "whatsapp",
-              label: "Botão Whatsapp",
-              file: "content/apx_whatsapp.json",
+              name: "popup",
+              label: "Popup",
+              file: "content/apx_popup.json",
               editor: {
                   preview: false
               },
               fields: [
                   {
-                      label: "Ícone",
+                      label: "Imagem",
                       name: "image",
                       widget: "image",
                       required: false
                   },
                   {
-                      label: "Número (Ex: 559900000000) 55 + DDD + Telefone",
-                      name: "number",
+                      label: "Título",
+                      name: "title",
                       widget: "string"
                   },
                   {
-                      label: "Posição",
-                      name: "position",
-                      widget: "select",
-                      options: ["Esquerda", "Direita"]
-                  }
+                      label: "Texto",
+                      name: "title",
+                      widget: "string"
+                  },
+                  {
+                      label: "HTML",
+                      hint:"Pode ser de um formulário ou algum script qualquer",
+                      name: "code",
+                      widget: "code"
+                  }           
               ]
           },
-            
         ]
       }      
     ]
