@@ -1,11 +1,46 @@
 <%
 // load footer options and contacts from content
+const apx_popup = _.cms('apx_popup') || {}
 const footer = _.cms('footer') || {}
 const contacts = _.cms('contacts') || {}
 const themeCustom = _.settings.theme.custom || ''
 %>
-<% if (contacts.whatsapp) { %>
-   
+<% if(apx_popup){ %>
+<div id="apx_popup">
+  <div class="modal fade" id="apx_popup-box" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <% if(apx_popup.image){ %>  
+            <div class="modal-image">
+              <img src="<%= apx_popup.image %>">
+            </div>
+            <% } %>
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <% if(apx_popup.title){ %>  
+                <h5 class="modal-title"><%- apx_popup.title %></h5>
+                <% } if(apx_popup.description){ %>  
+                <p><%- apx_popup.description %></p>
+                <% } if(apx_popup.code){ %>  
+                  <%- apx_popup.code.code %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+//  window.onload = function() {
+//       setTimeout(function() {
+//           $('#apx_popup-box').modal('show');
+//       }, 1000);
+//   };
+</script>
+<% } %>
+<% if (contacts.whatsapp) { %>   
     <a
       href="javascript:;"
       target="_blank"

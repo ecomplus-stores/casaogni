@@ -144,3 +144,26 @@ else {
   console.log("Your Browser does not support speech Recognition");
   info.textContent = "Your Browser does not support Speech Recognition";
 }
+
+function shouldShowPopup() {
+  const lastClose = localStorage.getItem('popupClosedAt');
+  if (!lastClose) return true;
+
+  const lastCloseDate = new Date(lastClose);
+  const now = new Date();
+  const oneDay = 24 * 60 * 60 * 1000; // Um dia em milissegundos
+
+  return (now - lastCloseDate) > oneDay;
+}
+
+$(document).ready(function() {
+  if (shouldShowPopup()) {
+      setTimeout(function() {
+          $('#apx_popup-box').modal('show');
+      }, 5000);
+  }
+});
+
+$('#apx_popup-box').on('hidden.bs.modal', function () {
+  localStorage.setItem('popupClosedAt', new Date().toISOString());
+});

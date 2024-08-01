@@ -1,0 +1,42 @@
+
+<% if (Array.isArray(opt.list) && opt.list.length) { %>
+<section class="apx_banners-stripe-box my-5 animate_flex_<%= opt.animation %>">
+  <% for (let z = 0; z < (opt.animation ? 2 : 1); z++) { %>
+  <div class="apx_banners-stripe animate_<%= opt.animation %>"
+    style="--title-color:<%= opt.title_color %>;description_color:<%= opt.description_color %>;"
+  >
+    <% for (let i = 0; i < opt.list.length; i++) { %>
+      
+      <% if (opt.list[i].link){ %>
+        <a href="<%- opt.list[i].link %>" class="item">
+      <% } else{  %>
+      
+      <div class="item">
+      <% } %>
+        <% if (opt.list[i].img){ %>
+          <div>
+            <img src="<%- opt.list[i].img%>"/>
+          </div>
+        <% } %>
+        
+        <div>
+          <% if (opt.list[i].title){ %>
+          <strong><%- opt.list[i].title %></strong>
+          <% } %>
+          <% if (opt.list[i].description){ %>
+            <span><%- opt.list[i].description %></span>
+            <% } %>
+        </div>
+        
+      
+      <% if (opt.list[i].link){ %>
+      </a>
+      <% } else { %>
+      
+      </div>
+      <% } %>
+    <% } %>      
+  </div>
+  <% } %>
+</section>
+<% } %>
