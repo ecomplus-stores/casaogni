@@ -2037,3 +2037,232 @@ body{overflow-y: scroll!important;}
     span{display: none ;}
   }
 }
+
+header.header {
+  .search-engine__aside{display:none!important}
+}
+.search-engine__aside-open{display: none;}
+@media(min-width:990px){
+  #content{
+    //#search{
+      
+      .search-engine{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        .search-engine__nav{
+          order:-20;
+          width: 100%;
+          .search-engine__toggles > button{display: none;}
+          .container{width: 100%;}
+        }
+        .search-engine__aside{
+          order:-15;
+          .card-header{display: none;}
+          button[data-toggle]{
+            // display: flex;
+            // flex-direction: row-reverse;
+            // justify-content: space-between;
+            // align-items: center;
+            // width: 100%;
+          }
+        }
+        .search-engine__terms{order:-21;width:100%}
+        .search-engine__results{
+          order:-5;
+          width: calc(100% - 230px);
+          margin-left: auto;
+          .container{
+            padding: 0 0 0 30px;
+          }
+        }
+        .item-retail{flex: 0 0 3333.333%;max-width: 33.333%;margin-bottom: 2rem;}
+        .search-engine__aside{
+          display:block!important;
+          float: left;
+          width: 220px;
+        }  
+      }
+    //}
+  }
+}
+#search-engine + nav{
+  justify-content: flex-end;
+  .page-item{
+    .page-link{
+      font-size: var(--font-size-sm);
+    }
+  }
+  .page-item.active{
+    .page-link{
+      background: var(--c2);
+      border-color: var(--c2);
+    }
+  }
+}
+#content{
+  .search-engine__nav{
+    background: transparent;
+    padding: 0 0 .5rem 0;
+    .container{padding: 0;}
+    border-bottom: 1px solid #E8E8E8;
+    margin-bottom: 1.5rem;
+    *{color: var(--c2);font-size: var(--font-size-sm);}
+    
+    button{
+      padding: 0;
+      background: transparent;
+      border: 0;
+    }
+  }
+  .search-engine__info{
+    padding: 0 0 .5rem 0!important;
+    *{font-size: var(--smallest)!important;}
+  }
+  .search-engine__aside{
+      border: 0;
+      position: relative;
+      left: auto;
+      right: auto;
+      top: auto;
+      width: 100%;
+      z-index: 1;
+      max-width: 100%;
+      // .card-header{
+      //     display: none;
+      // }
+      h5,
+      button[data-toggle="collapse"]{
+        color: var(--c1);
+        font-size: var(--font-size-sm)!important;
+        font-weight: 700!important;
+        text-transform: uppercase;
+        pointer-events: none;
+        i{display: none;}
+      }
+      .search-engine__option-range{display: none;}
+      .card-body{
+          padding: 0;
+          border: 0;
+          #collapse-shape{
+              .custom-control-input:checked~.custom-control-label img{
+                  filter: invert(1);
+              }
+          }
+          .search-engine__filter:not(:first-child){
+              margin-top: 1.5rem;
+              
+              padding-top: .5rem;
+          }
+          .search-engine__filter > button{
+              font-size: var(--f17);
+              font-weight: bold;
+              text-transform: uppercase;
+          }
+          .search-engine__option{
+              padding: 0;
+              margin-top: .5rem;
+              input{}
+              label{
+                  border: 1px solid #f2f2f2;
+                  padding: .5rem;
+                  // padding: .5rem 1rem;
+                  width: 100%;
+                  color: #848484;
+                  font-size: 14px;
+                  
+              }
+              .d-flex{flex-direction: row;text-align: left;justify-content: flex-start;flex-wrap: wrap;gap: 10px;}
+              .cms_ico{
+                  img{max-height:16px;border-radius:3px;max-width: 36px;}
+              }
+              .cms_description{
+                  font-size: var(--f11);
+                  width: 100%;
+                  color: #848484;
+              }
+          }
+          .custom-control-input:checked~.custom-control-label{
+              background: var(--c1);
+              color: #fff;
+              border-color: var(--c1);
+              *{color: #fff;}
+          }
+          
+          .custom-control-input:checked~.custom-control-label:after,
+          .custom-control-input:checked~.custom-control-label:before{
+              background: #fff;
+              background-color: #fff!important;
+              border: 0;
+              border-radius: 0!important;
+              content: "";
+              height: 12px;
+              left: auto;
+              opacity: 1!important;
+              position: absolute;
+              right: 1rem;
+              rotate: 45deg;
+              top: 0.8rem;
+              width: 1.5px;
+              z-index: 3;
+          }
+          .custom-control-input:checked~.custom-control-label:after{rotate: -45deg;}
+          
+      }
+      .card-footer{
+          background: transparent;
+          padding: 0;
+          border-top: 1px solid #f2f2f2;
+          padding-top: 1.5rem;
+          button{
+              font-size: var(--f14);
+              font-weight: 600;
+              color: #848484;
+              background: #f2f2f2;
+              border: 1px solid #ccc;
+              border-radius: 0;
+              padding: 0.8rem;
+          }
+          button:hover{
+              background: #000;
+              color:#fff
+          }
+      }
+  }
+}
+@media(min-width:990px){
+  .search-engine__aside .card-body{
+      overflow-y: unset !important;
+      overflow-x: unset !important;
+      .sticky{
+          position: sticky;
+          top: 2rem;
+          height: calc(100dvh - 4rem);
+          overflow-y: scroll;
+          margin-right: -1rem;
+          padding-right: 1rem;
+      }
+      .sticky::-webkit-scrollbar {
+          width: 3px;
+          border-left:1px solid #888;
+      }
+  
+      /* Track */
+      .sticky::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      }
+
+      /* Handle */
+      .sticky::-webkit-scrollbar-thumb {
+      background: #000;
+      border-radius: var(--borderRadius)!important;
+      }
+
+      /* Handle on hover */
+      .sticky::-webkit-scrollbar-thumb:hover {
+          background: #f2f2f2;
+      }
+      label{overflow: hidden;}
+  }
+}

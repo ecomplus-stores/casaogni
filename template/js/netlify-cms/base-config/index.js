@@ -923,7 +923,7 @@ export default options => {
                   },
                   {
                       label: "Texto",
-                      name: "title",
+                      name: "description",
                       widget: "string"
                   },
                   {
