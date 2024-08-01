@@ -2401,3 +2401,28 @@ header.header {
   }
   *{text-decoration: none;cursor:default}
 }
+
+@media(min-width:990px){
+  nav.header__submenu{
+    
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .header___links{
+    width: 100%;
+    display: flex;
+    gap: 1rem 2rem;
+    flex-wrap: wrap;
+    .header___link.hasThird_yes{order:-1}
+    .header___link.hasThird_no{order:10;
+      width: 100%;
+      a{margin-bottom: 0!important;}
+    }
+    .header___link{
+      width: calc(50% - 2rem);
+      display: flex;
+      flex-direction: column;
+      a{width: fit-content;}
+    }
+  }
+}

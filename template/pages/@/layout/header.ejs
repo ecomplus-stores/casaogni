@@ -392,10 +392,13 @@ const hasAllDepartments = header.menu_all_departments
                       %>
                       <nav class="header__submenu<%= fullWidthSubmenu ? ' header__submenu--full' : '' %>" id="<%= `s-${slug.replace(/\//g, '_')}` %>">
                         <div class="header___links">
+                          
                         <% subcategories.forEach(subcategory => { %>
-                          <div class="header___link">               
+                          <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
+                          <div class="header___link hasThird_<%= thirdCategories.length > 0 ? 'yes':'no'%>">               
+                            
                             <a id="sd-<%= subcategory._id %>" href="/<%= subcategory.slug %>"><%= subcategory.name %></a>
-                            <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
+                            
                             <%
                               if (isAlphabeticalOrderSubmenu) {
                                 thirdCategories.sort((a, b)=> {
