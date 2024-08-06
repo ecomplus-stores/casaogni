@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function() {
            $('#instant-search .search__status .close').click();
        }
    });
+
+  
 });
 
 if(window.innerWidth < 990){
