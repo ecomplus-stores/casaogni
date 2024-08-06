@@ -62,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function() {
    });
 });
 
-
+if(window.innerWidth < 990){
+  $(`header#header #search-bar .box`).appendTo(`.menu_heading-search`)
+}
 
 //BUSCA POR VOZ
 const searchForm = document.querySelector("#search-form");

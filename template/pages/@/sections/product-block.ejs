@@ -269,15 +269,15 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
     <div class="tab_specs tab">
       <% if (_.state.specifications) { %>
         <section id="product-specs" class="product-specs">
-          <div class="container">
+          <div class="container py-4">
             <div class="row">
             
                 <% for (const gridId in _.state.specifications) {
                   
                   if (_.state.specifications[gridId]) {
                     %>
-                    <div class="col-md-auto col-12">
-                      <div class="d-flex align-items-center justify-content-center flex-column  spec_item mr-3">
+                    <div class="col-md-12 col-12">
+                      <div class="d-flex align-items-center justify-content-center  spec_item mr-3">
                         <strong class="text-muted">
                           <%= _.ecomUtils.gridTitle(gridId, _.grids) %>
                         </strong>
@@ -286,6 +286,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
                         </span>
                       </div>
                     </div>
+                    <hr class="w-100 d-none d-md-block">
                     <%
                   }
                   
