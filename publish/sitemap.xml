@@ -962,13 +962,13 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/pages/trocas</loc>
+      <loc>https://casaogni.netlify.app/pages/termos</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/pages/termos</loc>
+      <loc>https://casaogni.netlify.app/pages/trocas</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
@@ -992,13 +992,13 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/posts/teste-de-post</loc>
+      <loc>https://casaogni.netlify.app/posts/esta-loja-e-um-pwa</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/posts/esta-loja-e-um-pwa</loc>
+      <loc>https://casaogni.netlify.app/posts/teste-de-post</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
