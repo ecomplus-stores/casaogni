@@ -938,7 +938,7 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/pages/faq</loc>
+      <loc>https://casaogni.netlify.app/pages/contato</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
@@ -950,7 +950,7 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/pages/privacidade</loc>
+      <loc>https://casaogni.netlify.app/pages/faq</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
@@ -962,7 +962,7 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/pages/termos</loc>
+      <loc>https://casaogni.netlify.app/pages/privacidade</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
@@ -974,7 +974,7 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/pages/contato</loc>
+      <loc>https://casaogni.netlify.app/pages/termos</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
@@ -998,13 +998,13 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/posts/esta-loja-e-um-pwa</loc>
+      <loc>https://casaogni.netlify.app/posts/esta-loja-e-um-pwa copy</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/posts/esta-loja-e-um-pwa copy</loc>
+      <loc>https://casaogni.netlify.app/posts/esta-loja-e-um-pwa</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
