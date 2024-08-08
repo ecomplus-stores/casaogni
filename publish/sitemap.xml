@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>https://casaogni.netlify.app/nespresso</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://casaogni.netlify.app/colecao-mesa-posta</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://casaogni.netlify.app/colecao-banheiro</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://casaogni.netlify.app/colecao-cantinho-do-cafe</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://casaogni.netlify.app/colecao-decoracao</loc>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
       <loc>https://casaogni.netlify.app/descanso-de-panela-de-bambu-cozinha</loc>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
@@ -446,7 +476,7 @@
     </url>
   
     <url>
-      <loc>https://casaogni.netlify.app/bandeja-em-polirresina-3x295x11cm</loc>
+      <loc>https://casaogni.netlify.app/bandeja-retangular-em-poliresina</loc>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
     </url>
@@ -891,36 +921,6 @@
   
     <url>
       <loc>https://casaogni.netlify.app/cantinho-do-cafe</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  
-    <url>
-      <loc>https://casaogni.netlify.app/colecao-mesa-posta</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  
-    <url>
-      <loc>https://casaogni.netlify.app/colecao-banheiro</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  
-    <url>
-      <loc>https://casaogni.netlify.app/colecao-cantinho-do-cafe</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  
-    <url>
-      <loc>https://casaogni.netlify.app/colecao-decoracao</loc>
-      <changefreq>weekly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  
-    <url>
-      <loc>https://casaogni.netlify.app/nespresso</loc>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
     </url>
