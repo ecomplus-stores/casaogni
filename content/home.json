@@ -54,6 +54,61 @@
           },
           "start": "2024-05-31T14:03:35.669Z",
           "end": "2024-11-30T14:03:35.683Z"
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/cozinha-1-.png"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          },
+          "start": "2024-08-23T19:36:43.995Z",
+          "end": "2024-08-23T19:36:44.034Z"
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/sala-2-.png"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          },
+          "start": "2024-08-23T19:37:03.842Z",
+          "end": "2024-08-23T19:37:03.888Z"
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/cozinha.png"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          },
+          "start": "2024-08-23T19:37:21.371Z",
+          "end": "2024-08-23T19:37:21.420Z"
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/sala.png"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          },
+          "start": "2024-08-23T19:37:55.970Z",
+          "end": "2024-08-23T19:37:56.030Z"
+        },
+        {
+          "desktop": {
+            "mask_opacity": 0,
+            "img": "/img/uploads/sala-1-.png"
+          },
+          "mobile": {
+            "mask_opacity": 0
+          },
+          "start": "2024-08-23T19:38:14.854Z",
+          "end": "2024-08-23T19:38:14.919Z"
         }
       ],
       "spacing": {
