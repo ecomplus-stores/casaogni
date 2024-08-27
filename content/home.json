@@ -5,7 +5,7 @@
     {
       "type": "apx_banner-slider",
       "visibility": "d-block d-md-block",
-      "autoplay": 4000,
+      "autoplay": 3000,
       "slides": [
         {
           "desktop": {
@@ -19,14 +19,15 @@
             "btn_text": "Ver Produtos",
             "btn_text_color": "#ffffff",
             "mask_opacity": 5,
-            "title": "Sala de Estar",
-            "link": "/decoracao",
+            "title": "Jogos de Jantar",
+            "link": "/jogos-de-jantar",
             "title_color": "#ffffff",
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
             "mask_opacity": 0,
-            "img": "/img/uploads/rectangle-5-3-.png"
+            "img": "/img/uploads/mesa-posta-1-.png",
+            "link": "/jogos-de-jantar"
           },
           "start": "2024-05-31T14:03:35.669Z",
           "end": "2024-11-30T14:03:35.683Z"
@@ -43,72 +44,55 @@
             "btn_text": "Ver Produtos",
             "btn_text_color": "#ffffff",
             "mask_opacity": 5,
-            "title": "Sala de Estar 2",
-            "link": "/decoracao",
+            "title": "Organização - Banheiro",
+            "link": "/banheiro",
             "title_color": "#ffffff",
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
             "mask_opacity": 0,
-            "img": "/img/uploads/rectangle-5-3-.png"
+            "img": "/img/uploads/banheiro.png",
+            "link": "/banheiro"
           },
           "start": "2024-05-31T14:03:35.669Z",
           "end": "2024-11-30T14:03:35.683Z"
         },
         {
           "desktop": {
-            "mask_opacity": 0,
-            "img": "/img/uploads/cozinha-1-.png"
+            "description_color": "#ffffff",
+            "animate": "fadeInUp",
+            "img": "/img/uploads/cozinha-1-.png",
+            "content_order": "inside_image",
+            "btn_url": "/cozinha-e-mesa",
+            "content_position": "center_left",
+            "mask_color": "#000000",
+            "btn_text": "Ver produtos",
+            "btn_background": "#000000",
+            "btn_text_color": "#ffffff",
+            "mask_opacity": 5,
+            "title": "Cozinha & Mesa",
+            "link": "/cozinha-e-mesa",
+            "title_color": "#ffffff",
+            "description": "Tudo para sua mesa posta e acessórios para sua cozinha."
           },
           "mobile": {
-            "mask_opacity": 0
+            "description_color": "#ffffff",
+            "img": "/img/uploads/cozinha-1-.png",
+            "content_order": "inside_image",
+            "btn_url": "/cozinha-e-mesa",
+            "content_position": "center_left",
+            "mask_color": "#000000",
+            "btn_text": "Ver produtos",
+            "btn_background": "#000000",
+            "btn_text_color": "#ffffff",
+            "mask_opacity": 5,
+            "title": "Cozinha & Mesa",
+            "link": "/cozinha-e-mesa",
+            "title_color": "#ffffff",
+            "description": "Tudo para sua mesa posta e acessórios para sua cozinha."
           },
           "start": "2024-08-23T19:36:43.995Z",
           "end": "2024-08-23T19:36:44.034Z"
-        },
-        {
-          "desktop": {
-            "mask_opacity": 0,
-            "img": "/img/uploads/sala-2-.png"
-          },
-          "mobile": {
-            "mask_opacity": 0
-          },
-          "start": "2024-08-23T19:37:03.842Z",
-          "end": "2024-08-23T19:37:03.888Z"
-        },
-        {
-          "desktop": {
-            "mask_opacity": 0,
-            "img": "/img/uploads/cozinha.png"
-          },
-          "mobile": {
-            "mask_opacity": 0
-          },
-          "start": "2024-08-23T19:37:21.371Z",
-          "end": "2024-08-23T19:37:21.420Z"
-        },
-        {
-          "desktop": {
-            "mask_opacity": 0,
-            "img": "/img/uploads/sala.png"
-          },
-          "mobile": {
-            "mask_opacity": 0
-          },
-          "start": "2024-08-23T19:37:55.970Z",
-          "end": "2024-08-23T19:37:56.030Z"
-        },
-        {
-          "desktop": {
-            "mask_opacity": 0,
-            "img": "/img/uploads/sala-1-.png"
-          },
-          "mobile": {
-            "mask_opacity": 0
-          },
-          "start": "2024-08-23T19:38:14.854Z",
-          "end": "2024-08-23T19:38:14.919Z"
         }
       ],
       "spacing": {
