@@ -15,10 +15,10 @@
             "content_order": "inside_image",
             "btn_url": "/exclusivos",
             "content_position": "center_left",
-            "mask_color": "#000000",
+            "mask_color": "",
             "btn_text": "Ver Produtos",
             "btn_text_color": "#ffffff",
-            "mask_opacity": 5,
+            "mask_opacity": 0,
             "title": "Jogos de Jantar",
             "link": "/jogos-de-jantar",
             "title_color": "#ffffff",
@@ -26,7 +26,7 @@
           },
           "mobile": {
             "mask_opacity": 0,
-            "img": "/img/uploads/mesa-posta-1-.png",
+            "img": "",
             "link": "/jogos-de-jantar"
           },
           "start": "2024-05-31T14:03:35.669Z",
