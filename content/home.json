@@ -9,7 +9,7 @@
       "slides": [
         {
           "desktop": {
-            "description_color": "#ffffff",
+            "description_color": "#efd7c8",
             "animate": "fadeInUp",
             "img": "/img/uploads/mesa-posta-1-.png",
             "content_order": "inside_image",
@@ -23,7 +23,7 @@
             "title": "Jogos de Jantar",
             "link": "/jogos-de-jantar",
             "title_color": "#ffffff",
-            "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
+            "description": "Conheça nossa coleção de jogos de jantar"
           },
           "mobile": {
             "description_color": "#ffffff",
