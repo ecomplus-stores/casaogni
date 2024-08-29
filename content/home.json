@@ -5,7 +5,7 @@
     {
       "type": "apx_banner-slider",
       "visibility": "d-block d-md-block",
-      "autoplay": 3000,
+      "autoplay": 4000,
       "slides": [
         {
           "desktop": {
@@ -145,12 +145,12 @@
           "title": "Decoração"
         },
         {
-          "img": "/img/uploads/mesa-posta.png",
+          "img": "/img/uploads/mesa-posta-2-.png",
           "link": "/colecao-mesa-posta",
           "title": "Mesa Posta"
         },
         {
-          "img": "/img/uploads/banheiro.png",
+          "img": "/img/uploads/banheiro-1-.png",
           "link": "/colecao-banheiro",
           "title": "Banheiro"
         },
