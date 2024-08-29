@@ -17,7 +17,8 @@
             "content_position": "center_left",
             "mask_color": "",
             "btn_text": "Ver Produtos",
-            "btn_text_color": "#ffffff",
+            "btn_background": "#503d36",
+            "btn_text_color": "#efd7c8",
             "mask_opacity": 0,
             "title": "Jogos de Jantar",
             "link": "/jogos-de-jantar",
@@ -25,9 +26,19 @@
             "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh viverra non semper suscipit posuere a pede."
           },
           "mobile": {
-            "mask_opacity": 0,
-            "img": "",
-            "link": "/jogos-de-jantar"
+            "description_color": "#ffffff",
+            "img": "/img/uploads/mesa-posta-3-.png",
+            "content_order": "inside_image",
+            "btn_url": "/jogos-de-jantar",
+            "content_position": "center_left",
+            "mask_color": "#000000",
+            "btn_text": "Ver produtos",
+            "btn_background": "#503d36",
+            "btn_text_color": "#efd7c8",
+            "mask_opacity": 5,
+            "title": "Mesa Posta",
+            "link": "/jogos-de-jantar",
+            "title_color": "#ffffff"
           },
           "start": "2024-05-31T14:03:35.669Z",
           "end": "2024-11-30T14:03:35.683Z"
