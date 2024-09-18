@@ -171,3 +171,4 @@ $(document).ready(function() {
 $('#apx_popup-box').on('hidden.bs.modal', function () {
   localStorage.setItem('popupClosedAt', new Date().toISOString());
 });
+

@@ -16,16 +16,17 @@
       class="gallery__item"
       :class="{ 'gallery__item--selected': i === activeIndex }"
       @click="activeIndex = i"
+      @mouseover="activeIndex = i"
     >
       <a-picture
-        v-if="i < 4"
+        
         class="gallery__thumb"
         :src="getImg(picture, null, 'small')"
       />
     </div>
 
     <button
-      v-if="localPictures.length > 4"
+      v-if="localPictures.length > 4 && 1 != 1"
       type="button"
       class="gallery__open btn btn-dark"
       :style="zoomLinkStyle"
@@ -101,7 +102,7 @@
           </li>
         </ul>
         <div
-          class="glide__arrows glide__arrows--outer d-md-none d-block"
+          class="glide__arrows glide__arrows--outer  d-block"
           data-glide-el="controls"
         >
           <button

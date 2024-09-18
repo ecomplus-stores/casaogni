@@ -39,9 +39,7 @@
             "title": "Mesa Posta",
             "link": "/jogos-de-jantar",
             "title_color": "#ffffff"
-          },
-          "start": "2024-05-31T14:03:35.669Z",
-          "end": "2024-11-30T14:03:35.683Z"
+          }
         },
         {
           "desktop": {
@@ -101,9 +99,7 @@
             "link": "/cozinha-e-mesa",
             "title_color": "#ffffff",
             "description": "Tudo para sua mesa posta e acessórios para sua cozinha."
-          },
-          "start": "2024-08-23T19:36:43.995Z",
-          "end": "2024-08-23T19:36:44.034Z"
+          }
         }
       ],
       "spacing": {

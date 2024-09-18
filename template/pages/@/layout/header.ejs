@@ -219,7 +219,7 @@ const hasAllDepartments = header.menu_all_departments
             class="btn btn-lg d-none d-md-flex"
             role="button"            
             title="Wishlist"
-            href="/app/#/account/"
+            href="/app/#/account/favorites"
           >
             <i class="svg-ico">              
               <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -245,7 +245,7 @@ const hasAllDepartments = header.menu_all_departments
               </svg>
             </i>
             <span class="d-none d-md-block">
-              Minha Conta
+              Conta
             </span>
           </a>
           <a
@@ -261,7 +261,7 @@ const hasAllDepartments = header.menu_all_departments
               </svg>
             </i>
             <span class="d-none d-md-block">
-              Minha Sacola
+              Sacola
             </span>
             <span id="cart-count" class="badge badge-primary"></span>
           </a>
@@ -389,12 +389,19 @@ const hasAllDepartments = header.menu_all_departments
                             return b.name > a.name ? -1 : 1
                           })
                         }
+
+                        let columns = 0
                       %>
                       <nav class="header__submenu<%= fullWidthSubmenu ? ' header__submenu--full' : '' %>" id="<%= `s-${slug.replace(/\//g, '_')}` %>">
                         <div class="header___links">
                           
+                    
                         <% subcategories.forEach(subcategory => { %>
                           <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
+
+                          <% if (thirdCategories.length > 0) {
+                            columns = columns + 1
+                            %>
                           <div class="header___link hasThird_<%= thirdCategories.length > 0 ? 'yes':'no'%>">               
                             
                             <a id="sd-<%= subcategory._id %>" href="/<%= subcategory.slug %>"><%= subcategory.name %></a>
@@ -411,9 +418,34 @@ const hasAllDepartments = header.menu_all_departments
                                 <%= thirdCategory.name %>
                               </a>
                             <% }) %>
-                          </div>                        
+                          </div>   
+                          <% } %>                     
                         <% }) %>
-                        </div>
+                        <div class="header___link hasThird_yes others"><% 
+                          columns = columns + 1
+                          subcategories.forEach(subcategory => { %>
+                            <% const thirdCategories = _.categories.filter(({ parent }) => parent && parent.slug === subcategory.slug) %>
+                            
+                              <% if (thirdCategories.length == 0) {%>                                
+                                <a id="sd-<%= subcategory._id %>" href="/<%= subcategory.slug %>"><%= subcategory.name %></a>
+                              <% } %>
+                          <% }) %></div>                        
+                        <script>
+                          
+
+                            
+                            
+                            window["<%= `s-${slug.replace(/\//g, '_')}` %>"] = <%= columns  %>;
+                            // Verifica se o elemento foi encontrado e se o conteúdo de texto tem comprimento maior que 0
+                            if (document.getElementById("<%= `s-${slug.replace(/\//g, '_')}` %>").querySelector('.hasThird_yes.others') && document.getElementById("<%= `s-${slug.replace(/\//g, '_')}` %>").querySelector('.hasThird_yes.others').textContent.trim().length == 0) {
+                              document.getElementById("<%= `s-${slug.replace(/\//g, '_')}` %>").querySelector('.hasThird_yes.others').remove()
+                              window["<%= `s-${slug.replace(/\//g, '_')}` %>"]  = window["<%= `s-${slug.replace(/\//g, '_')}` %>"]  - 1
+                              
+                            } 
+                            window["<%= `s-${slug.replace(/\//g, '_')}` %>"] = window["<%= `s-${slug.replace(/\//g, '_')}` %>"]  > 3 ? 3 : window["<%= `s-${slug.replace(/\//g, '_')}` %>"] ;
+                            document.getElementById("<%= `s-${slug.replace(/\//g, '_')}` %>").setAttribute('columns',window["<%= `s-${slug.replace(/\//g, '_')}` %>"])
+                          
+                        </script>
                         <% if(icon){ %>
                           <div class="header__icon-bn">
                             <a href="<%- slug %>">

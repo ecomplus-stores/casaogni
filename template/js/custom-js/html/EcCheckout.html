@@ -11,9 +11,8 @@
       :data-enabled-step="enabledCheckoutStep"
     >
       <div class="row">
-        <div class="checkout-left-col"
-         :class="canHideSummary ? 'col' : 'col-lg-8'">
-          <nav class="checkout__steps d-none">
+        <div :class="canHideSummary ? 'col' : 'col-lg-8'">
+          <nav class="checkout__steps">
             <a
               :href="cartUrl"
               class="checkout__step"
@@ -43,50 +42,32 @@
 
           <div class="row">
             <div
-              class="checkout__col col-md-12"
-              
+              class="checkout__col col-md-6"
+              :class="enabledCheckoutStep === 1 ? 'offset-lg-3' : null"
             >
-              <div class="first_step">
-                
-                <div
-                  v-if="isGuestCheckout"
-                  class="checkout__account mb-3"
-                >
-                  <account-form
-                    :customer.sync="localCustomer"
-                    :is-short="true"
-                    :is-guest-access="true"
-                    :has-submit-btn="!hasBuyerInfo"
-                    :btn-text="i19proceed"
-                  />
+              <div :class="shownCheckoutStep !== 1 ? 'd-none d-md-block' : null">
+                <div class="mb-3">
+                  <div
+                    v-if="isGuestCheckout"
+                    class="checkout__account"
+                  >
+                    <account-form
+                      :customer.sync="localCustomer"
+                      :is-short="true"
+                      :is-guest-access="true"
+                      :has-submit-btn="!hasBuyerInfo"
+                      :btn-text="i19proceed"
+                    />
+                  </div>
                 </div>
-                
 
-                <div class="mb-md-5 mb-4">
-                  <h3>
-                    Endereço de entrega
-                  </h3>
-                  <account-addresses
-                    :customer.sync="localCustomer"
-                    :zip-code="shippingZipCode"
-                    :form-btn-text="i19proceed"
-                    :can-show-form="1 === 1"
-                    @select-address="selectAddress"
-                    @show-form="isAddrForm => isEditingAddr = isAddrForm"
-                  />
-                </div>
-                
                 <div
                   v-if="shippingAddress"
-                  class="checkout__shipping mb-md-5 mb-4"
+                  class="checkout__shipping"
                 >
-                  <h3>
-                    Forma de envio
-                  </h3>
-                  
                   <transition-group enter-active-class="animated fadeInDown">
                     <div
-                      v-if="1 != 1 && hippingService && !editShippingService && !skipShippingApps.length"
+                      v-if="shippingService && !editShippingService && !skipShippingApps.length"
                       key="shipping"
                     >
                       <div class="checkout__shipping-method">
@@ -96,7 +77,7 @@
 
                       <a
                         href="#"
-                        class="btn btn-sm btn-outline-secondary"
+                        class="btn btn-sm btn-secondary"
                         @click.prevent="editShippingService = true"
                       >
                         <i class="i-edit mr-1"></i>
@@ -117,9 +98,17 @@
                   </transition-group>
                 </div>
 
-                
+                <account-addresses
+                  v-if="hasBuyerInfo"
+                  :customer.sync="localCustomer"
+                  :zip-code="shippingZipCode"
+                  :form-btn-text="i19proceed"
+                  :can-show-form="shownCheckoutStep === 1"
+                  @select-address="selectAddress"
+                  @show-form="isAddrForm => isEditingAddr = isAddrForm"
+                />
 
-                <!-- <transition
+                <transition
                   enter-active-class="animated fadeInDown"
                   leave-active-class="animated fadeOutUp"
                 >
@@ -131,83 +120,43 @@
                     <i class="i-chevron-right mr-1"></i>
                     {{ i18n('ProceedToPayment') }}
                   </button>
-                </transition> -->
+                </transition>
 
-                <!-- <div
+                <div
                   class="checkout__overlay fade"
                   :class="shownCheckoutStep !== 1 ? 'show' : null"
                   @click="toCheckoutStep = 1"
                 >
-                </div> -->
-              </div>
-
-              <div class="mb-md-5 mb-4">
-                <h3>Observações</h3>
-                <div class="checkout__notes">
-                  <div class="form-group">
-                    <label class="d-none" for="order-notes">{{ i19additionalComments }}</label>
-                    <textarea
-                      class="form-control"
-                      :placeholder="i19orderNotesInputMsg"
-                      id="order-notes"
-                      rows="3"
-                      v-model="localNotes"
-                      maxlength="255"
-                    ></textarea>
-                  </div>
                 </div>
-              </div>
-              <div class="mb-md-5 mb-4">
-                <discount-applier
-                  
-                  class="checkout__discount mt-4"
-                  :amount="amount"
-                  :coupon-code.sync="localDiscountCoupon"
-                  @set-discount-rule="discountRule => $emit('set-discount-rule', discountRule)"
-                  :modules-payload="modulesPayload"
-                  :customer="customer"
-                  is-attention-wanted
-                />
               </div>
             </div>
 
-            <div class="checkout__col col-md-12 pt-0"
-            :class="enabledCheckoutStep ? 'ativao' : 'desativao'">
-              <h3>
-                Forma de pagamento
-              </h3>
-              <div class="row">
-                <div class="col-md-12">
-                  <transition
-                  enter-active-class="animated fadeInRight slow"
-                  leave-active-class="animated fadeOutRight fast position-absolute"
+            <div class="checkout__col col-md-6">
+              <transition
+                enter-active-class="animated fadeInRight slow"
+                leave-active-class="animated fadeOutRight fast position-absolute"
+              >
+                <div
+                  v-if="enabledCheckoutStep >= 2"
+                  :class="shownCheckoutStep !== 2 ? 'd-none d-md-block' : null"
                 >
+                  <payment-methods
+                    :key="paymentsListKey"
+                    :amount="paymentAmount"
+                    :customer="localCustomer"
+                    :payment-gateways.sync="paymentGateways"
+                    @select-gateway="selectPaymentGateway"
+                    @checkout="checkout"
+                  />
+
                   <div
-                    
-                    :class="shownCheckoutStep !== 2 ? 'd-block d-md-block' : null"
+                    class="checkout__overlay fade"
+                    :class="shownCheckoutStep !== 2 ? 'show' : null"
+                    @click="toCheckoutStep = 2"
                   >
-                    <payment-methods
-                      :key="paymentsListKey"
-                      :amount="paymentAmount"
-                      :customer="localCustomer"
-                      :payment-gateways.sync="paymentGateways"
-                      @select-gateway="selectPaymentGateway"
-                      @checkout="checkout"
-                    />
-  
-                    
                   </div>
-                  </transition>
-                  
                 </div>
-                <!-- <div
-                      class="checkout__overlay fade"
-                      :class="shownCheckoutStep !== 2 ? 'show' : null"
-                      @click="toCheckoutStep = 2"
-                    >
-                    </div> -->
-              </div>
-              
+              </transition>
             </div>
           </div>
 
@@ -218,20 +167,17 @@
             :coupon-code.sync="localDiscountCoupon"
             @set-discount-rule="discountRule => $emit('set-discount-rule', discountRule)"
             :modules-payload="modulesPayload"
+            :payment-gateway="paymentGateway"
             :customer="customer"
             is-attention-wanted
           />
         </div>
-        
+
         <div
           v-if="!canHideSummary"
           class="col-lg-4 checkout__info"
         >
-          <button type="button" @click="toggleSummarySm" class="d-md-none d-flex checkout-toggle-resume" :class="summaryVisible ? 'inactive' : 'active'">
-            {{cart.items.length}} produto(s)
-            <small>{{summaryVisible ? 'Fechar' : 'Ver Resumo'}}</small>
-          </button>
-          <div class="checkout__summary" :class="!summaryVisible ? 'd-none d-md-block' : 'd-block d-md-block'">
+          <div class="checkout__summary">
             <ec-summary
               :amount="amount"
               :items="cart.items"
@@ -264,20 +210,33 @@
                 />
               </template>
 
-              <template v-if="enabledCheckoutStep > 1 && 1 != 1">
+              <template v-if="enabledCheckoutStep > 1">
                 <discount-applier
                   class="checkout__discount"
                   :amount="amount"
                   :coupon-code.sync="localDiscountCoupon"
                   @set-discount-rule="discountRule => $emit('set-discount-rule', discountRule)"
                   :modules-payload="modulesPayload"
+                  :payment-gateway="paymentGateway"
                   :customer="customer"
                   is-attention-wanted
                 />
               </template>
             </ec-summary>
 
-            
+            <div class="checkout__notes mt-4 mb-auto">
+              <div class="form-group">
+                <label for="order-notes">{{ i19additionalComments }}</label>
+                <textarea
+                  class="form-control"
+                  :placeholder="i19orderNotesInputMsg"
+                  id="order-notes"
+                  rows="3"
+                  v-model="localNotes"
+                  maxlength="255"
+                ></textarea>
+              </div>
+            </div>
 
             <div class="checkout__back">
               <a :href="cartUrl" class="btn btn-sm btn-light">
@@ -309,18 +268,19 @@
           </template>
         </recommended-items>
 
-        <!-- <button
+        <button
+          v-if="hasMoreOffers"
           class="checkout__btn-top btn btn-link"
           @click="goToTop"
         >
           <i class="i-chevron-up mr-1"></i>
           {{ i19checkout }}
-        </button> -->
+        </button>
       </template>
     </div>
 
     <div
-      v-else-if="!isUserIdentified"
+      v-else-if="!isUserIdentified && 1 != 1"
       key="login"
     >
       <slot name="login">
@@ -329,14 +289,7 @@
           @update="isUserIdentified = true"
           :customer-email.sync="customerEmail"
           :can-fetch-oauth="!isExternalAuth"
-        >
-          <template v-if="isExternalAuth" v-slot:login-methods="{ confirmAccount }">
-            <p v-if="confirmAccount()">
-              Ou entre com
-              <a href="/app/account#/checkout">link de acesso por e-mail</a>
-            </p>
-          </template>
-        </login-block>
+        />
       </slot>
     </div>
 
@@ -348,12 +301,7 @@
       <slot name="account">
         <p class="lead">
           {{ i18n('RegisterToBuy') }}:
-          <small v-if="isExternalAuth" class="d-block">
-            Já possui conta?
-            <a href="/app/account#/checkout">Receber link de acesso por e-mail</a>
-          </small>
         </p>
-
         <account-form
           :customer.sync="localCustomer"
           :is-short="true"
