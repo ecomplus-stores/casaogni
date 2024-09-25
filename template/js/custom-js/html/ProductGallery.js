@@ -234,6 +234,23 @@ export default {
     })
     glide.mount()
     this.glide = glide
+    
+    // this.$nextTick(() => {
+    //   if($(`.gallery__thumbs:not(.slick) > div`).length > 6){
+    //     $(`.gallery__thumbs:not(.slick)`).slick({
+    //       infinite: true,
+    //       slidesToShow: 6,
+    //       slidesToScroll: 1,
+    //       vertical: true
+    //     })
+    //   }
+    // });
+    this.$nextTick(() => {
+      if(this.localPictures.length > 6){
+        var galleryHeight = document.querySelector('.gallery .gallery__stage .glide').offsetHeight;
+        document.body.style.setProperty('--gallery-height', (galleryHeight - 1) + 'px');
+      }
+    });
 
   },
 

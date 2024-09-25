@@ -17,7 +17,9 @@ if(client.display_name){
 
 document.addEventListener("DOMContentLoaded", function() {
   var topbarHeight = document.querySelector('.apx_topbar').offsetHeight;
+  //var galleryHeight = document.querySelector('.gallery .gallery__stage .glide').offsetHeight;
   document.body.style.setProperty('--topbar-height', (topbarHeight - 1) + 'px');
+  //document.body.style.setProperty('--gallery-height', (galleryHeight - 1) + 'px');
 
   $('#product-tabs .tabs li').click(function(){
     $('#product-tabs .tabs li').removeClass('active')

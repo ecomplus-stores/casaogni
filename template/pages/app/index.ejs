@@ -4,6 +4,8 @@ const footer = _.cms('footer') || {}
 const logo = _.settings.logo
   ? { url: (_.assetsPrefix || '') + _.settings.logo, alt: _.settings.name }
   : _.store.logo
+
+console.log(_.state)
 %>
 
 <!doctype html>
@@ -13,7 +15,7 @@ const logo = _.settings.logo
   <%- await include('@/head') %>
 </head>
 
-<body class="app">
+<body class="app <%= JSON.stringify(_.state) %>">
   <header class="app__header">
     <div class="container-fluid">
       <div class="row">
@@ -66,8 +68,8 @@ const logo = _.settings.logo
       </div>
     </div> -->
 
-    <div class="app__credits container">
-      <div>
+    <div class="app__credits container ">
+      <div class="px-md-5">
         <% if (footer.credits) { %>
           <span><%= footer.credits %></span>
         <% } else { %>
@@ -76,8 +78,10 @@ const logo = _.settings.logo
           <span class="app__credits-number"> <%= contacts.doc_number %></span>
         <% } %>
       </div>
-
-      <%- await include('@/layout/inc/ecom-credits') %>
+      <div class="px-md-5">
+        <%- await include('@/layout/inc/ecom-credits') %>
+      </div>
+      
     </div>
   </footer>
 

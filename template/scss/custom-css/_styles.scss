@@ -2548,5 +2548,37 @@ header.header {
     }
     .glide__arrow--left{left: 20px;}
     .glide__arrow--right{right: 20px;}
+
+    .gallery__thumbs{
+      max-height: var(--gallery-height);
+      overflow-y: scroll;
+      padding-right: .5rem;
+      flex-basis:100px;
+    }
+    
+    /* width */
+    .gallery__thumbs::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    /* Track */
+    .gallery__thumbs::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    .gallery__thumbs::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    .gallery__thumbs::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
+
+}
+
+[data-page-title="Minha conta"]{
+  > h1{display: none;}
 }
