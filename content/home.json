@@ -39,7 +39,9 @@
             "title": "Mesa Posta",
             "link": "/jogos-de-jantar",
             "title_color": "#ffffff"
-          }
+          },
+          "start": "2024-09-25T16:30:23.895Z",
+          "end": "2024-09-25T16:30:24.014Z"
         },
         {
           "desktop": {
@@ -99,7 +101,9 @@
             "link": "/cozinha-e-mesa",
             "title_color": "#ffffff",
             "description": "Tudo para sua mesa posta e acessórios para sua cozinha."
-          }
+          },
+          "start": "2024-09-25T16:30:24.121Z",
+          "end": "2024-09-25T16:30:24.231Z"
         }
       ],
       "spacing": {
@@ -216,7 +220,7 @@
           "desktop": {
             "mask_opacity": 0,
             "img": "/img/uploads/rectangle-8-1-.png",
-            "title": "Gift Card",
+            "title": "Ganhe Pontos",
             "description": "O item ideal para quem quer presentear e está na dúvida",
             "btn_text": "Comprar",
             "btn_url": "/gift-card"
@@ -229,7 +233,7 @@
           "desktop": {
             "mask_opacity": 0,
             "img": "/img/uploads/rectangle-8-1-.png",
-            "title": "Gift Card",
+            "title": "Lista de Presentes",
             "description": "O item ideal para quem quer presentear e está na dúvida",
             "btn_text": "Comprar",
             "btn_url": "/gift-card"
