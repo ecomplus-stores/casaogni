@@ -6,6 +6,7 @@
 //
 const { toggleFavorite, checkFavorite } = require('@ecomplus/storefront-components/src/js/helpers/favorite-products');
 const EcomPassport = require('@ecomplus/passport-client');
+const search = new EcomSearch()
 const client = EcomPassport.ecomPassport.getCustomer();   
 
 if(client.display_name){
@@ -46,11 +47,14 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   $('body').on('click','.apx__wishlist--add', function(){
-    if(client.display_name){
-      toggleFavorite($(this).data(`id`), this.ecomPassport)
-    }else{
-      window.location = "/app/#/account/"
-    }
+    toggleFavorite($(this).data(`id`), EcomPassport.ecomPassport)
+    checkFavoriteLocal()
+  });
+
+  $('body').on('click','#favorites-quickview button[data-product-id]', function(){
+    toggleFavorite($(this).data(`product-id`), EcomPassport.ecomPassport)
+    $(this).closest(`.item`).remove();
+    checkFavoriteLocal()
   });
 
   $('.header__search#search-form .header__search-input').keyup(function(){
@@ -63,8 +67,14 @@ document.addEventListener("DOMContentLoaded", function() {
        }
    });
 
-  
+   checkFavoriteLocal()
 });
+
+function checkFavoriteLocal(){
+  $(`.apx__wishlist--add`).removeClass(`active`)
+  let id = $(`.apx__wishlist--add`).data(`id`);
+  $(`.apx__wishlist--add`).addClass(checkFavorite(id, EcomPassport.ecomPassport) ? 'active' : '')
+}
 
 if(window.innerWidth < 990){
   $(`header#header #search-bar .box`).appendTo(`.menu_heading-search`)
@@ -174,3 +184,95 @@ $('#apx_popup-box').on('hidden.bs.modal', function () {
   localStorage.setItem('popupClosedAt', new Date().toISOString());
 });
 
+async function syncFavorites(){
+  if(client.display_name && localStorage.getItem(`apxLocalFavorites`)){
+    const localFavorites = JSON.parse(localStorage.getItem(`apxLocalFavorites`));
+    const { favorites } = await EcomPassport.ecomPassport.getCustomer(); 
+    const newFavorites = localFavorites.concat(favorites.filter(item => !localFavorites.includes(item)));
+    EcomPassport.ecomPassport.requestApi('/me.json', 'patch', { newFavorites })
+    localStorage.removeItem(`apxLocalFavorites`)
+  }
+}
+
+
+
+async function placeFavorites(){  
+  $(`.favorites__body`).html('<p class="h5 d-block m-3 text-center">Carregando...</p>');
+  
+  try {
+    let favoriteList = []
+    if(client.display_name){
+      const { favorites } = await EcomPassport.ecomPassport.getCustomer();  
+      favoriteList = favorites  
+    }else{
+      let localFavorites = localStorage.getItem(`apxLocalFavorites`)
+      if(localFavorites){
+        localFavorites = JSON.parse(localFavorites)
+        favoriteList = localFavorites
+      }
+    }
+    
+    search.setProductIds(favoriteList).fetch().then(result => {
+      //console.log(result)
+      $(`.favorites__body`).empty()
+      $.each(result.hits.hits, function(k,i){
+        let item = i._source;        
+        $(`<div class="item"><a href=/${item.slug}><img alt="${item.pictures ? item.pictures[0].normal.alt : ''}"src="${item.pictures ? item.pictures[0].normal.url : '/assets/img-placeholder.png'}"><h3 class=product-card__name>${item.name}</h3></a><button type="button" data-product-id=${i._id}><i class="i-trash"></i></button></div>`).appendTo(`.favorites__body`);
+      });  
+      
+      if(result.hits.hits.length == 0){
+        $(`.favorites__body`).html('<p class="m-4 text-center h5 font-small d-block">Ops... você não adicionou nenhum produto a sua lista de favoritos</p>');
+      }
+
+      $(`#favorites-toggle span`).text(result.hits.hits.length)
+    })
+    
+  }catch(e){
+    console.log(e)
+    $(`.favorites__body`).html('<p class="h5 d-block m-4 text-center">Ocorreu um erro ao carregar os favoritos :(</p>');
+    $(`#favorites-toggle span`).text(`0`)
+  }
+}
+
+$(`body`).on(`click`,`[href="/app/#/account/favorites"], #favorites-toggle`,function(e){
+  e.preventDefault();  
+  placeFavorites();
+  $(`#favorites-quickview`).show()
+});
+$(`body`).on(`click`,`#favorites-quickview .close`,function(e){
+  e.preventDefault();
+  $(`#favorites-quickview`).hide()
+});
+
+window.messageBullet = function(message) {
+  const container = document.getElementById('message-container');
+  
+  // Create a new div for the message
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message');
+  messageElement.textContent = message;
+  
+  // Append the new message to the container
+  container.appendChild(messageElement);
+  
+  // Trigger fadeIn effect
+  setTimeout(() => {
+    messageElement.classList.add('fade-in');
+  }, 10);  // Small delay to allow the DOM to update
+
+  // Wait 3 seconds, then trigger fadeOut
+  setTimeout(() => {
+    messageElement.classList.remove('fade-in');
+    messageElement.classList.add('fade-out');
+    
+    // Remove the message element after fadeOut transition (500ms)
+    setTimeout(() => {
+      messageElement.remove();
+    }, 500);
+  }, 3000);
+}
+
+
+placeFavorites();
+syncFavorites();
+//placeFavorites()

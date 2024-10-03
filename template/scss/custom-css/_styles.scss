@@ -932,6 +932,14 @@ footer.footer{
     gap: 5px;
     background: transparent;
   }
+  .apx__wishlist--add.active{
+    svg{
+      path{
+        fill: var(--danger);
+        stroke: var(--danger);
+      }
+    }
+  }
   .product__stripe{
     *{
       font-size: var(--font-size-sm);
@@ -2581,4 +2589,141 @@ header.header {
 
 [data-page-title="Minha conta"]{
   > h1{display: none;}
+}
+
+
+#favorites-quickview{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: none;
+  .backdrop{
+    top: 0;
+  }
+  .favorites__aside{
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 500px;
+    max-width: 90%;
+    position: fixed;
+
+    .card-header{
+      background: var(--c3);
+      border: 0;
+      border-radius: 0;
+      color: var(--c1);
+      font-family: var(--ff2);
+      font-size: var(--h5);
+      .apx-side-heading{}
+    }
+    .card-body{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-height: 80dvh;
+      overflow: auto;
+      .item{
+        width: calc(33.33333% - 1rem);
+        a{
+          display: block;
+          img{width: 100%;aspect-ratio:1;object-fit:cover;border-radius: 5px;}
+          h3{
+            font-family: var(--ff1);
+          }
+        }
+        button{
+          color: var(--danger);
+          padding: 0;
+          background: transparent;
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
+.text-center{text-align: center;}
+
+#favorites-toggle{
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background: var(--c2);
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  z-index: 999999999;
+  box-shadow: 0 4px 15px rgba(0,0,0,.149);
+  border: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg{
+    path{
+      stroke: #fff;
+    }
+  }
+  span{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: var(--c4);
+    height: 20px;
+    width: 20px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 10px;
+    line-height: 16px;
+    border-radius: 50%;
+  }
+}
+
+#message-container {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index:99999999999999999
+}
+
+.message {
+  padding: 10px 20px;
+  background-color: var(--c4);
+  color: #fff;
+  border-radius: 5px;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  translate: 100% 0;
+  font-size: var(--font-size-sm);
+}
+
+.fade-in {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.fade-out {
+  opacity: 0;
+  translate: 100% 0;
+}
+
+@media(max-width:990px){
+  #favorites-toggle{
+    height: 44px;
+    width: 44px;
+    svg{
+      height: 24px;
+      width: 24px;
+    }
+    span{
+      top: -5px;
+      right: -5px;
+    }
+  }
+  #favorites-quickview .favorites__aside .card-body{max-height: 60dvh;}
 }

@@ -5,6 +5,31 @@ const footer = _.cms('footer') || {}
 const contacts = _.cms('contacts') || {}
 const themeCustom = _.settings.theme.custom || ''
 %>
+<div id="message-container"></div>
+<div id="favorites-quickview">
+  <div class="backdrop"></div>
+  <aside class="favorites__aside card shadow">
+    <header class="card-header">
+      <div class="row apx-side-heading">
+        <div class="col">
+          <span>Favoritos</span>
+        </div>
+        <div class="col-auto">
+          <button type="button" aria-label="Fechar" class="close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="#131313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+        </div>
+      </div>
+    </header>
+    <article class="favorites__body card-body">
+    </article>      
+  </aside>
+</div>
+
+<button type="button" id="favorites-toggle">
+  <svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.6297 14.0612C23.1594 13.12 23.6012 12.2706 23.8736 11.6242C25.1964 8.48524 23.8884 4.87458 20.6908 3.40175C17.4933 1.92892 14.2825 3.45612 12.8734 6.40481C10.1787 4.55574 6.58402 4.8273 4.60169 7.71283C2.61936 10.5984 3.2415 14.368 5.95659 16.4251C7.18883 17.3586 9.62586 18.7344 11.9203 19.9588M23.6945 16.6459C23.0966 13.433 20.3628 11.0832 16.9207 11.7219C13.4786 12.3605 11.2529 15.466 11.7183 18.8404C12.0921 21.5515 14.1557 27.9123 14.9526 30.3083C15.0613 30.6353 15.1157 30.7987 15.2233 30.9127C15.3171 31.0121 15.4418 31.084 15.5747 31.1156C15.7272 31.1518 15.896 31.1172 16.2335 31.0479C18.7069 30.54 25.2474 29.1467 27.7822 28.1149C30.9372 26.8307 32.5653 23.3527 31.3458 20.0502C30.1263 16.7478 26.776 15.5573 23.6945 16.6459Z" stroke="#493C35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>0</span>
+</button>
 <% if(apx_popup){ %>
 <div id="apx_popup">
   <div class="modal fade" id="apx_popup-box" tabindex="-1"  aria-hidden="true">

@@ -173,9 +173,11 @@ export default {
     },
 
     toggleFavorite () {
-      if (this.isLogged) {
+      //if (this.isLogged) {
         this.isFavorite = toggleFavorite(this.body._id, this.ecomPassport)
-      }
+      //}else{
+        
+      //}
     },
 
     buy () {

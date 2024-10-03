@@ -213,7 +213,22 @@ const hasAllDepartments = header.menu_all_departments
           role="group"
           aria-label="<%= _.dictionary('myAccount') %>"
         >
-          
+          <a
+            id="tracking-button"
+            class="btn btn-lg d-none d-md-flex"
+            role="button"            
+            title="Rastreie seu pedido"
+            href="https://www.kangu.com.br/rastreio/" target="_blank" 
+          >
+          <i class="svg-ico">
+            <svg width="25" height="18" style="height:35px;width:35px" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.5 3.75H9.8258C12.1112 3.75 13.2539 3.75 13.6877 4.16047C14.0627 4.51528 14.2289 5.03796 14.1276 5.54416C14.0105 6.12976 13.0776 6.78964 11.2117 8.1094L8.16329 10.2656C6.29743 11.5854 5.36449 12.2452 5.24738 12.8308C5.14614 13.337 5.31231 13.8597 5.68727 14.2145C6.12105 14.625 7.26377 14.625 9.5492 14.625H10.25M6.875 3.75C6.875 4.99264 5.86764 6 4.625 6C3.38236 6 2.375 4.99264 2.375 3.75C2.375 2.50736 3.38236 1.5 4.625 1.5C5.86764 1.5 6.875 2.50736 6.875 3.75ZM17.375 14.25C17.375 15.4926 16.3676 16.5 15.125 16.5C13.8824 16.5 12.875 15.4926 12.875 14.25C12.875 13.0074 13.8824 12 15.125 12C16.3676 12 17.375 13.0074 17.375 14.25Z" stroke="#493C35" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </i>
+            <span class="d-none d-md-block">
+              Rastreie<br>seu Pedido
+            </span>
+          </a>
           <a
             id="wishlist-button"
             class="btn btn-lg d-none d-md-flex"
@@ -228,7 +243,7 @@ const hasAllDepartments = header.menu_all_departments
   
             </i>
             <span class="d-none d-md-block">
-              Lista de Desejos
+              Lista<br>de Desejos
             </span>
           </a>
           <a

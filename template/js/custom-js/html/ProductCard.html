@@ -19,10 +19,16 @@
 
           <div class="position-relative mb-2">
             <slot name="favorite">
-              <a 
+              <!-- <a 
                 class="btn product-card__favorite fade"
                 @click="toggleFavorite"
                 :href="isLogged ? null : accountUrl"
+                :aria-label="i19addToFavorites"
+              > -->
+              <a 
+                class="btn product-card__favorite fade"
+                @click="toggleFavorite"
+                :href="isLogged ? null : null"
                 :aria-label="i19addToFavorites"
               >
                 <i 
