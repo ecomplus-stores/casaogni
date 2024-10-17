@@ -84,6 +84,37 @@ console.log(_.state)
 
   <%- await include('@/json', { _ }) %>
   <%- await include('@/scripts') %>
+  <div id="message-container"></div>
+
+  <script>
+    window.messageBullet = function(message) {
+    const container = document.getElementById('message-container');
+    
+    // Create a new div for the message
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+    messageElement.textContent = message;
+    
+    // Append the new message to the container
+    container.appendChild(messageElement);
+    
+    // Trigger fadeIn effect
+    setTimeout(() => {
+      messageElement.classList.add('fade-in');
+    }, 10);  // Small delay to allow the DOM to update
+
+    // Wait 3 seconds, then trigger fadeOut
+    setTimeout(() => {
+      messageElement.classList.remove('fade-in');
+      messageElement.classList.add('fade-out');
+      
+      // Remove the message element after fadeOut transition (500ms)
+      setTimeout(() => {
+        messageElement.remove();
+      }, 500);
+    }, 3000);
+  }
+  </script>
 </body>
 
 </html>

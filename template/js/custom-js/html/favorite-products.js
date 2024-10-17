@@ -12,12 +12,12 @@ const toggleFavorite = (productId, ecomPassport = _ecomPassport) => {
       const favIndex = favorites.indexOf(productId)
       favorites.splice(favIndex, 1)
       window.messageBullet(`Removido dos favoritos`)
-      $(`[data-product-id="${productId}"] .svg-ico`).removeClass(`active`)
+      //$(`[data-product-id="${productId}"] .svg-ico`).removeClass(`active`)
     }
   
     ecomPassport.requestApi('/me.json', 'patch', { favorites })    
     $(`#favorites-toggle span`).text(favorites.length)  
-
+    window.updateListFavoriteCheck(productId)
     return !isFavorite
   }else{
     let localFavorites = localStorage.getItem(`apxLocalFavorites`)
@@ -35,10 +35,11 @@ const toggleFavorite = (productId, ecomPassport = _ecomPassport) => {
       localFavorites.splice(favIndex, 1)
       window.messageBullet(`Removido dos favoritos`)
 
-      $(`[data-product-id="${productId}"] .svg-ico`).removeClass(`active`)
+      //$(`[data-product-id="${productId}"] .svg-ico`).removeClass(`active`)
     }
     localStorage.setItem(`apxLocalFavorites`,JSON.stringify(localFavorites))
     $(`#favorites-toggle span`).text(localFavorites.length)
+    window.updateListFavoriteCheck(productId)
     return !isFavorite
   }
   

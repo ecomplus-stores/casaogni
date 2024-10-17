@@ -339,7 +339,7 @@ $('.apx_form:not(.avise-me)').submit( async function(e){
   window.apx.loading(true);
   var mail = [];
   mail.form = $(this);
-  mail.destination = $(this).find('[name="destination]').val() != undefined ? $(this).find('input[name="destination"]').val() : "edu.vlemes@gmail.com";
+  mail.destination = $(this).find('[name="destination]').val() != undefined ? $(this).find('input[name="destination"]').val() : "contato@casaogni.com.br";
   mail.replyTo = $(this).find('input[name="email"]').val();
   mail.subject = $(this).find('input[name="subject"]').val();
   mail.body = "";
@@ -384,3 +384,8 @@ window.apx.loading = function(state){
   }
 }
 
+window.updateListFavoriteCheck = function(product_id) {
+  const event = new Event('updateFavoriteList');
+  console.log(`dispatch`)
+  window.dispatchEvent(event);
+}

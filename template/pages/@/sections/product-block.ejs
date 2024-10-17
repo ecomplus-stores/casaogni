@@ -344,7 +344,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
             <button type="submit" class="d-block mt-4">Enviar Avaliação</button>
           </form>        
         </div>
-        <div class="col">
+        <div class="col" id="sb-product-testimonials-col">
           <div id="sb-product-testimonials-header" class=" pb-4">
             <div class="row align-items-center" >
               <div class="col-auto">
@@ -525,6 +525,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
                   }
               } else {
                   console.error('SB_Testimonials_Rating - Rating not found in response');
+                  $(`#sb-product-testimonials-col`).hide()
               }
               console.log('SB_Testimonials_Rating - OK');
             })

@@ -173,11 +173,7 @@ export default {
     },
 
     toggleFavorite () {
-      //if (this.isLogged) {
-        this.isFavorite = toggleFavorite(this.body._id, this.ecomPassport)
-      //}else{
-        
-      //}
+      this.isFavorite = toggleFavorite(this.body._id, this.ecomPassport)      
     },
 
     buy () {
@@ -215,7 +211,10 @@ export default {
       //       this.isWaitingBuy = false
       //     })
       // }
-    }
+    },
+    updateFavoriteStatus() {
+      this.isFavorite = checkFavorite(this.body._id, this.ecomPassport);
+    },
   },
 
   created () {
@@ -233,7 +232,7 @@ export default {
     }
   },
   mounted(){
-    
+    window.addEventListener('updateFavoriteList', this.updateFavoriteStatus);
     // if(window.innerWidth > 990){
     //     setTimeout(() => {
     //     $(this.$refs.productGallery).slick({
