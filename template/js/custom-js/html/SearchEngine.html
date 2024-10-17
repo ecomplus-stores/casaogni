@@ -97,7 +97,7 @@
 
           <div
             v-for="({ filter, options, isSpec }, i) in filters"
-            v-if="options.length"
+            v-if="options.length && ['material','cor','Categories'].includes(filter)"
             :key="`filters-${filter}`"
             class="search-engine__filter"
             :class="`search-engine__filter--${filter}`"
@@ -346,7 +346,7 @@
                 >
                   <i class="i-times mr-1"></i>
                   {{ option }}
-                  <small>{{ getFilterLabel(filter) }}</small>
+                  <small class="d-none">{{ getFilterLabel(filter) }}</small>
                 </button>
               </template>
             </div>

@@ -333,3 +333,54 @@ document.addEventListener("DOMContentLoaded", function() {
   window.sb.setSubscriberForm(`newsletter_footer`,`Assinatura realizada com sucesso!`,'newsletter_form','Newsletter')
 });
 
+
+$('.apx_form:not(.avise-me)').submit( async function(e){
+  e.preventDefault();
+  window.apx.loading(true);
+  var mail = [];
+  mail.form = $(this);
+  mail.destination = $(this).find('[name="destination]').val() != undefined ? $(this).find('input[name="destination"]').val() : "edu.vlemes@gmail.com";
+  mail.replyTo = $(this).find('input[name="email"]').val();
+  mail.subject = $(this).find('input[name="subject"]').val();
+  mail.body = "";
+
+  mail.form.find('input:not([type="hidden"]), textarea').each(function(){
+      mail.body = mail.body + $(this).closest('div').find('label').text() + ': ' + $(this).val() + '<br>';
+  });
+
+  await axios.post('https://us-central1-marketingtools-ecomplus.cloudfunctions.net/app/alpix/apx_sendmail', {
+      storeId : storefront.settings.store_id,
+      destination : mail.destination,
+      subject : mail.subject,
+      content : mail.body,
+      reply_mail: mail.replyTo
+  })
+  .then(function(response){
+      alert(response.data.msg)
+      if(!response.data.error){
+          mail.form.find('input[type="text"],input[type="email"],textarea,input[type="tel"]').val('')
+      }
+      
+  })   
+  
+  window.apx.loading(false);
+});
+
+window.apx = {}
+window.apx.loading = function(state){
+  let loader = $(`#apx_loader`);
+
+  if (loader.length == 0) {
+      // Cria o elemento do loader se não existir
+      loader = $(`<div id="apx_loader"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>`);
+      $(`body`).append(loader);
+  }
+
+  // Exibe ou oculta o loader com base no parâmetro `state`
+  if (state) {
+    loader.show()
+  } else {
+    loader.hide()
+  }
+}
+

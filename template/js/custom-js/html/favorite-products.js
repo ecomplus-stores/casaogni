@@ -12,6 +12,7 @@ const toggleFavorite = (productId, ecomPassport = _ecomPassport) => {
       const favIndex = favorites.indexOf(productId)
       favorites.splice(favIndex, 1)
       window.messageBullet(`Removido dos favoritos`)
+      $(`[data-product-id="${productId}"] .svg-ico`).removeClass(`active`)
     }
   
     ecomPassport.requestApi('/me.json', 'patch', { favorites })    
@@ -33,6 +34,8 @@ const toggleFavorite = (productId, ecomPassport = _ecomPassport) => {
       const favIndex = localFavorites.indexOf(productId)
       localFavorites.splice(favIndex, 1)
       window.messageBullet(`Removido dos favoritos`)
+
+      $(`[data-product-id="${productId}"] .svg-ico`).removeClass(`active`)
     }
     localStorage.setItem(`apxLocalFavorites`,JSON.stringify(localFavorites))
     $(`#favorites-toggle span`).text(localFavorites.length)

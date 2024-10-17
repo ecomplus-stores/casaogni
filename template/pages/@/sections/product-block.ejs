@@ -403,7 +403,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
   </div>
 </section>
 <script>
-  const SB_URL = "https://api.storeboost.com.br/";
+  const SB_URL = "https://api.storeboost.com.br";
   //STOREBOOST TESTIMONIAL SCRIPT
   const sb_Testimonial = {
       storeId : 26,
@@ -609,8 +609,9 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
                       $(this).addClass(`active`)
                       list.find(`input`).val(rating)
                     });
-                    $(`#sb-product-testimonials-set form`).submit(function(e){
+                    $(`#sb-product-testimonials-set form`).submit(async function(e){
                       e.preventDefault();
+                      window.apx.loading(true);
                       let me = $(this)
                       const testimonial = me.find(`[name="testimonial"]`).val();
                       const rating = me.find(`[name="rating"]`).val();              
@@ -628,7 +629,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
                           filters: []
                       };
 
-                      fetch(`${SB_URL}/api/data/set/${sb_Testimonial.storeId}/${sb_Testimonial.application}`, {
+                      await fetch(`${SB_URL}/api/data/set/${sb_Testimonial.storeId}/${sb_Testimonial.application}`, {
                           method: 'POST',
                           headers: {
                               'Content-Type': 'application/json'
@@ -637,11 +638,12 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
                       })
                       .then(response => response.json())
                       .then(data => {
-                          console.log(data.response || "Obrigado! Seu depoimento foi registrado");
+                          alert(data.response || "Obrigado! Seu depoimento foi registrado");
                       })
                       .catch((error) => {
-                        console.log('Houve um erro ao enviar o formulário.');
+                        alert('Houve um erro ao enviar o formulário.');
                       });
+                      window.apx.loading(true);
                     });
                     $(`#sb-product-testimonials-set`).removeClass(`d-none`)
                   }else{
