@@ -93,6 +93,7 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
             <p class="product__sku">
               COD: <%= _.state.sku %>
             </p>
+            <div id="sb-reviews-product-rating"></div>
             <% if(_.state.brands){ %>
             <p class="product__brands">
               Marca: <a href="/<%= _.state.brands[0].slug %>"><%= _.state.brands[0].name %></a>
@@ -297,12 +298,386 @@ if (stamps && Array.isArray(stamps.stamps_list) && stamps.stamps_list.length) {
         </section>
       <% } %>
     </div>
+    
   </div>
-  
+  <div id="sb-product-testimonials" class="m-5">
+    <div class="container">
+      <div class="row" style="align-items:flex-start">
+        <div id="sb-product-testimonials-set" class="col-md-5 mr-5 d-none">
+          <form>
+            <div class="row">
+              <div class="col-12"><h3 class="d-block mb-4">Você já comprou este item!</h3><label for="textimonial">Deixe sua avaliação</label></div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="sb-product-rating-set">
+                  <button type="button"  rating="1"></button>
+                  <button type="button" rating="2"></button>
+                  <button type="button" rating="3"></button>
+                  <button type="button" rating="4"></button>
+                  <button type="button" class="active" rating="5"></button>
+                  <input type="hidden" name="rating" value="5"/>
+                </div>
+                
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <textarea name="testimonial" placeholder="Digite aqui o que você achou do produto. Se a qualidade é boa, se é bonito..."></textarea>
+              </div>
+            </div>
+            <div class="d-none">
+              <div class="row mt-4">
+                <div class="col-12">
+                  <label for="files">Tirou fotos? Mostra pra gente!</label>
+                </div>              
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <div id="files-image-cover">
+                    <span>Adicionar Imagens</span>
+                    <input type="file" multiple accept="image/*" name="files"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="d-block mt-4">Enviar Avaliação</button>
+          </form>        
+        </div>
+        <div class="col">
+          <div id="sb-product-testimonials-header" class=" pb-4">
+            <div class="row align-items-center" >
+              <div class="col-auto">
+                <div class="sb-product-testimonials-rating">0</div>
+              </div>
+              <div class="col-auto pl-md-0">
+                <div class="sb-product-testimonials-stars"></div>
+              </div>
+            </div>
+            <div class="row justify-content-between align-items-center">
+              <div class="col-auto">
+                <p class="m-0">Com base em <span class="sb-product-testimonials-totals">0</span> avaliações</p>
+              </div>
+              <div class="col-auto">
+                <button type="button" data-order-field="rating" data-order-type="desc">Maior Nota</button>
+                <button type="button" data-order-field="rating" data-order-type="asc">Menor Nota</button>
+                <button type="button" data-order-field="createdAt" data-order-type="desc">Mais Recente</button>
+              </div>
+            </div>
+          </div>
+          <div id="sb-product-testimonials-body">
+            <template id="sb-product-testimonial-template">
+              <div data-testimonial-id="${id}" class="py-4">
+                <div class="row align-items-center justify-content-between">
+                  <div class="col-auto">
+                    <div class="d-flex align-items-center mb-2">
+                      <b>${client_name}</b>
+                      <div data-rating="${rating}" class="ml-4 sb-product-testimonial-stars"></div>
+                    </div>
+                    
+                    <span class="d-flex align-items-center"><img src="/img/uploads/shield-empty.svg" class="mr-2">Comprador Verificado</span>
+                    
+                  </div>
+                  <div class="col-auto">
+                    <div class="testimonial-gallery" data-gallery="testimonial_${id}_gallery">
+                      
+                    </div>
+                  </div>                    
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <p class="my-md-4">${testimonial}</p>
+                  </div>
+                </div>
+                <div class="row justify-content-between align-items-center">
+                  <div class="col-auto">
+                    <span>Publicado em: ${createdAt}</span>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>            
+  </div>
 </section>
 <script>
- 
-  
+  const SB_URL = "https://api.storeboost.com.br/";
+  //STOREBOOST TESTIMONIAL SCRIPT
+  const sb_Testimonial = {
+      storeId : 26,
+      application : 'customer-review',
+      searchField : 'product_main_sku',
+      searchValue : '<%- _.state.sku %>',
+      page: 0,
+      pageSize: 5,
+      config : {
+        SB_productRatingClass : 'sb-product-testimonials-rating',
+        SB_productRatingStarsClass : 'sb-product-testimonials-stars',
+        SB_productTestimonialTotalClass : 'sb-product-testimonials-totals',
+        SB_testimonialListId : 'sb-product-testimonials-body'
+      },
+      client_name: null,
+      headers : {
+      'Content-Type': 'application/json'          
+      },
+      placeDOM : function(){
+
+      },
+      placeTestimonials : function(data){
+        const template = document.getElementById('sb-product-testimonial-template');
+        if(template){
+          data.forEach(post => {
+            const clone = template.content.cloneNode(true);
+            let templateString = clone.firstElementChild.outerHTML;
+            //console.log(`post`,post)
+            templateString = templateString
+                .replace(/\$\{id\}/g, post.id)
+                .replace(/\$\{client_name\}/g, post.client_name)
+                .replace(/\$\{rating\}/g, post.rating)
+                //.replace(/\$\{gallery\[0\].url\}/g, post.gallery[0].url)
+                //.replace(/\$\{gallery\[0\].formats\[0\].url\}/g, post.gallery[0].formats[0].url)
+                .replace(/\$\{testimonial\}/g, post.testimonial)
+                .replace(/\$\{createdAt\}/g, sb_Testimonial.formatDate(post.createdAt)); 
+            let div = $(templateString);    
+            
+            let elStarsDOM = div.find(`[data-rating]`)
+            for(let i = 1; i<= 5; i++){
+              if(i <= post.rating){
+                elStarsDOM.append('<i class="sbStar star-full"></i>')  
+                
+              }else{
+                if(post.rating > i - 1){
+                    elStarsDOM.append('<i class="sbStar star-half"></i>')
+                  }else{
+                    elStarsDOM.append('<i class="sbStar star-empty"></i>')
+                  }                          
+              }
+            }
+            
+            // if(post.gallery){
+            //   let gallery = div.find(`.testimonial-gallery`);
+            //   $.each(post.gallery, function(k,i){
+            //     gallery.append(`<a data-pswp-width="${i.width}" data-pswp-height="${i.height}"
+            //     href="${i.url}" data-lightbox="testimonial_${post.id}_gallery"><img src="${i.formats.thumbnail.url}"/></a>`)
+            //   })                  
+            // }
+            
+
+            $(`#` + sb_Testimonial.config.SB_testimonialListId).append(div);
+
+            // if(post.gallery){
+            //   const gallerySelector = `[data-gallery="testimonial_${post.id}_gallery"]`;
+            //   //window.initializePhotoSwipeLightbox(gallerySelector);
+            //   $(gallerySelector).fancybox({
+            //       selector : 'a'
+            //   });
+            // }
+          });
+        }
+        
+      },
+      getProductRating: function(){
+        sb_Testimonial.ratingUrl = `${SB_URL}/api/data/related/get/${sb_Testimonial.storeId}/${sb_Testimonial.application}/product-rating/1/1/${sb_Testimonial.searchField}/${sb_Testimonial.searchValue}`;
+        const elStars = document.getElementsByClassName( sb_Testimonial.config.SB_productRatingClass);
+        const elStarsIco = document.getElementsByClassName( sb_Testimonial.config.SB_productRatingStarsClass);
+        const elTotals = document.getElementsByClassName( sb_Testimonial.config.SB_productTestimonialTotalClass);
+        if(elStars){
+          fetch( sb_Testimonial.ratingUrl, {
+            method: 'GET',
+            headers: sb_Testimonial.headers            
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              if (data && data[0] && data[0].rating) {
+                  const ratingValue = data[0].rating.toFixed(1);
+                  for (let i = 0; i < elStars.length; i++) {
+                      elStars[i].setAttribute('data-stars', ratingValue);
+                      elStars[i].innerHTML = ratingValue
+                  }
+
+                  let elStarsDOM = $(`<div class="sb-rating-stars"></div>`);
+                  for(let i = 1; i<= 5; i++){
+                    if(i <= ratingValue){
+                      elStarsDOM.append('<i class="sbStar star-full"></i>')  
+                      
+                    }else{
+                      if(ratingValue > i - 1){
+                          elStarsDOM.append('<i class="sbStar star-half"></i>')
+                        }else{
+                          elStarsDOM.append('<i class="sbStar star-empty"></i>')
+                        }                          
+                    }
+                  }
+
+                  for (let i = 0; i < elStarsIco.length; i++) {
+                      //elStars[i].setAttribute('data-stars', ratingValue);
+                      elStarsIco[i].innerHTML = elStarsDOM.html()
+                  }
+                  
+
+                  const totalReviews = data[0].total_reviews
+                  for (let i = 0; i < elTotals.length; i++) {
+                    elTotals[i].setAttribute('data-totals', totalReviews);
+                    elTotals[i].innerHTML = totalReviews
+                  }
+              } else {
+                  console.error('SB_Testimonials_Rating - Rating not found in response');
+              }
+              console.log('SB_Testimonials_Rating - OK');
+            })
+            .catch(error => {
+              console.error('SB_Testimonials_Rating - ERR');
+            });
+        }else{
+          console.error('SB_Testimonials_Rating - Set elements on DOM before any call');
+        }
+        
+      },
+      getTestimonials: function(params, page){
+        sb_Testimonial.page = page == 0 ? 0 : sb_Testimonial.page;
+        if(sb_Testimonial.page == 0){
+          $(`#sb-product-testimonials-body > div`).remove();
+        }
+        sb_Testimonial.page++;
+        sb_Testimonial.listingUrl = `${SB_URL}/api/data/get/${sb_Testimonial.storeId}/${sb_Testimonial.application}/${sb_Testimonial.page}/${sb_Testimonial.pageSize}/${sb_Testimonial.searchField}/${sb_Testimonial.searchValue}${params}`;
+        const elList = document.getElementById( sb_Testimonial.config.SB_testimonialListId);
+        if(elList){
+          fetch( sb_Testimonial.listingUrl, {
+            method: 'GET',
+            headers: sb_Testimonial.headers            
+          })
+            .then(response => response.json())
+            .then(data => {
+              sb_Testimonial.placeTestimonials(data);
+              console.log('SB_Testimonials - OK');
+            })
+            .catch(error => {
+              console.error('SB_Testimonials - ERR');
+            });
+        }else{
+          console.error('SB_Testimonials - Set elements on DOM before any call');
+        }
+      },
+      formatDate: function(dateStr){
+        const date = new Date(dateStr); 
+        const day = String(date.getUTCDate()).padStart(2, '0'); 
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+        const year = date.getUTCFullYear();
+
+        const formattedDate = `${day}/${month}/${year}`;
+
+        return formattedDate
+      },
+      canSetTestimonial: async function(){        
+        if(window.EcomPassport){
+          let client_name = await window.EcomPassport.ecomPassport.getCustomer().display_name;
+          let orders = await EcomPassport.ecomPassport.fetchOrdersList()
+          let q = orders.filter(order => order.items.find( item => item.product_id == "<%= _.state._id %>"))
+          
+          if(q.length > 0){
+            const elList = document.getElementById( sb_Testimonial.config.SB_testimonialListId);
+            if(elList){
+            
+              fetch(`${SB_URL}/api/data/check/${sb_Testimonial.storeId}/${sb_Testimonial.application}`, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({data:{
+                    filters:[
+                      {
+                        filterName: 'product_main_sku',
+                        searchValue: "<%= _.state.sku %>"
+                      },
+                      {
+                        filterName: 'order_id',
+                        searchValue: q[0].number
+                      }
+                    ]
+                  }})
+              })              
+                .then(response => response.json())
+                .then(data => {
+                  if(!data.status){
+                    $(`body`).on(`click`,`.sb-product-rating-set button`, function(){
+                      let rating = $(this).attr(`rating`);
+                      let list = $(this).closest(`.sb-product-rating-set`);
+                      list.find(`.active`).removeClass(`active`)
+                      $(this).addClass(`active`)
+                      list.find(`input`).val(rating)
+                    });
+                    $(`#sb-product-testimonials-set form`).submit(function(e){
+                      e.preventDefault();
+                      let me = $(this)
+                      const testimonial = me.find(`[name="testimonial"]`).val();
+                      const rating = me.find(`[name="rating"]`).val();              
+                      const product_id = "<%= _.state._id %>";
+                      const product_main_sku = "<%= _.state.sku %>";
+                      const order_id = q[0].number;
+                      const data = {
+                          testimonial: testimonial,
+                          rating: parseInt(rating),
+                          product_main_sku: product_main_sku,
+                          product_id: product_id,
+                          client_name: client_name,
+                          order_id : order_id.toString(),
+                          active: true,
+                          filters: []
+                      };
+
+                      fetch(`${SB_URL}/api/data/set/${sb_Testimonial.storeId}/${sb_Testimonial.application}`, {
+                          method: 'POST',
+                          headers: {
+                              'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({data:data})
+                      })
+                      .then(response => response.json())
+                      .then(data => {
+                          console.log(data.response || "Obrigado! Seu depoimento foi registrado");
+                      })
+                      .catch((error) => {
+                        console.log('Houve um erro ao enviar o formulário.');
+                      });
+                    });
+                    $(`#sb-product-testimonials-set`).removeClass(`d-none`)
+                  }else{
+                    $(`#sb-product-testimonials-set`).remove()
+                  }
+                  
+                })
+                .catch(error => {
+                  console.error('SB_Testimonials - ERR');
+                });
+            }else{
+              console.error('SB_Testimonials - Set elements on DOM before any call');
+            }
+          }
+        }
+      }, 
+      filterAndOrderTestimonials(){
+        $(`#sb-product-testimonials-header button`).click(function(){
+          $(`#sb-product-testimonials-header button`).removeClass(`active`);
+          $(this).addClass(`active`);
+
+          let field = $(this).attr(`data-order-field`);
+          let type = $(this).attr(`data-order-type`);
+
+          let params = `?orderBy=${field}&type=${type}`
+          sb_Testimonial.getTestimonials(params,0)
+
+        })
+      }             
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+      sb_Testimonial.getProductRating()
+      sb_Testimonial.getTestimonials('',0)
+      sb_Testimonial.canSetTestimonial()
+      sb_Testimonial.filterAndOrderTestimonials()
+    })
 </script>
 
 <%

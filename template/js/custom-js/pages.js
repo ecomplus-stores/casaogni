@@ -5,9 +5,9 @@
 
 //
 const { toggleFavorite, checkFavorite } = require('@ecomplus/storefront-components/src/js/helpers/favorite-products');
-const EcomPassport = require('@ecomplus/passport-client');
+window.EcomPassport = require('@ecomplus/passport-client');
 const search = new EcomSearch()
-const client = EcomPassport.ecomPassport.getCustomer();   
+const client = window.EcomPassport.ecomPassport.getCustomer();   
 
 if(client.display_name){
   $('[data-username]').text(client.display_name || `Visitante` )
@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   $('body').on('click','.apx__wishlist--add', function(){
-    toggleFavorite($(this).data(`id`), EcomPassport.ecomPassport)
+    toggleFavorite($(this).data(`id`), window.EcomPassport.ecomPassport)
     checkFavoriteLocal()
   });
 
   $('body').on('click','#favorites-quickview button[data-product-id]', function(){
-    toggleFavorite($(this).data(`product-id`), EcomPassport.ecomPassport)
+    toggleFavorite($(this).data(`product-id`), window.EcomPassport.ecomPassport)
     $(this).closest(`.item`).remove();
     checkFavoriteLocal()
   });
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function checkFavoriteLocal(){
   $(`.apx__wishlist--add`).removeClass(`active`)
   let id = $(`.apx__wishlist--add`).data(`id`);
-  $(`.apx__wishlist--add`).addClass(checkFavorite(id, EcomPassport.ecomPassport) ? 'active' : '')
+  $(`.apx__wishlist--add`).addClass(checkFavorite(id, window.EcomPassport.ecomPassport) ? 'active' : '')
 }
 
 if(window.innerWidth < 990){
@@ -187,9 +187,9 @@ $('#apx_popup-box').on('hidden.bs.modal', function () {
 async function syncFavorites(){
   if(client.display_name && localStorage.getItem(`apxLocalFavorites`)){
     const localFavorites = JSON.parse(localStorage.getItem(`apxLocalFavorites`));
-    const { favorites } = await EcomPassport.ecomPassport.getCustomer(); 
+    const { favorites } = await window.EcomPassport.ecomPassport.getCustomer(); 
     const newFavorites = localFavorites.concat(favorites.filter(item => !localFavorites.includes(item)));
-    EcomPassport.ecomPassport.requestApi('/me.json', 'patch', { newFavorites })
+    window.EcomPassport.ecomPassport.requestApi('/me.json', 'patch', { newFavorites })
     localStorage.removeItem(`apxLocalFavorites`)
   }
 }
@@ -202,7 +202,7 @@ async function placeFavorites(){
   try {
     let favoriteList = []
     if(client.display_name){
-      const { favorites } = await EcomPassport.ecomPassport.getCustomer();  
+      const { favorites } = await window.EcomPassport.ecomPassport.getCustomer();  
       favoriteList = favorites  
     }else{
       let localFavorites = localStorage.getItem(`apxLocalFavorites`)
@@ -276,3 +276,60 @@ window.messageBullet = function(message) {
 placeFavorites();
 syncFavorites();
 //placeFavorites()
+
+
+
+const SB_URL = "https://api.storeboost.com.br"
+
+//STOREBOOST
+window.sb = {};
+window.sb.storeId = 26;
+window.sb.setSubscriberForm = function(formElId, messageOk, origin, list){
+  const form = document.getElementById(formElId);
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const email = form.querySelector('[name="email"]') ? form.querySelector('[name="email"]').value : '';
+    const name = form.querySelector('[name="name"]') ? form.querySelector('[name="name"]').value : '';
+    const gender = form.querySelector('[name="gender"]') ? form.querySelector('[name="gender"]').value : '';
+    const phone = form.querySelector('[name="phone"]') ? form.querySelector('[name="phone"]').value : '';
+    
+    const data = {
+        email: email,
+        name: name,
+        gender: gender,
+        origin: origin,
+        list: list,
+        phone: phone,
+        filters: [{
+          fieldName: `email`,
+          searchValue: email
+        }]
+    };
+
+    fetch(`${SB_URL}/api/data/set/${window.sb.storeId}/subscriber`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({data:data})
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.response || messageOk);
+    })
+    .catch((error) => {
+        alert('Houve um erro ao enviar o formulário.');
+    });
+
+  });
+
+  console.log(`ALPIX.DEV - STOREBOOST - [${formElId}] - Running`)
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  window.sb.setSubscriberForm(`apx_popup_form`,`Formulário enviado com sucesso!`,'popup_form','Newsletter')
+  window.sb.setSubscriberForm(`newsletter_footer`,`Assinatura realizada com sucesso!`,'newsletter_form','Newsletter')
+});
+

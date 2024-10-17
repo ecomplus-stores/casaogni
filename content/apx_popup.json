@@ -1,7 +1,7 @@
 {
   "image": "/img/uploads/d3c71b565d9666691ffdf392923c0f34.jpg",
   "code": {
-    "code": "<form>\n                    <div class=\"form-group\">\n                        <label for=\"email\">Email</label>\n                        <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Digite seu email\">\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-primary\">Assinar</button>\n                </form>"
+    "code": "<form id=apx_popup_form>\n                    <div class=\"form-group\">\n                        <label for=\"email\">Email</label>\n                        <input type=\"email\" class=\"form-control\" name=\"email\" placeholder=\"Digite seu email\">\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-primary\">Assinar</button>\n                </form>"
   },
   "title": "Olá!<b>",
   "description": "Assine nossa newsletter para ganhar um cupom de <b>5% de desconto</b> em sua primeira compra e ficar por dentro das novidades.<br><br>O cupom vai chegar no seu e-mail em breve!<br><br>Boas compras e até breve!"

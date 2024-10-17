@@ -5,6 +5,8 @@ module.exports = () => ({
     alias: {
       './base-config': path.resolve(__dirname, 'template/js/netlify-cms/base-config'),
       //'./base-config/sections.js': path.resolve(__dirname, 'template/js/netlify-cms/base-config/sections.js'),
+     // './html/AccountForm.html': path.resolve(__dirname, 'template/js/custom-js/html/AccountForm.html'),   
+      './js/AccountForm.js': path.resolve(__dirname, 'template/js/custom-js/html/AccountForm.js'),   
       './html/ProductCard.html': path.resolve(__dirname, 'template/js/custom-js/html/ProductCard.html'),   
        './js/ProductCard.js': path.resolve(__dirname, 'template/js/custom-js/html/ProductCard.js'),   
        './html/ProductGallery.html': path.resolve(__dirname, 'template/js/custom-js/html/ProductGallery.html'),   

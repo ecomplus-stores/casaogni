@@ -323,6 +323,9 @@
             </slot>
             <div class="theme-share">
               <slot name="share">
+                <a :href="`https://api.whatsapp.com/send?text=Encontrei este produto na Casa Ogni: https://www.casaogni.com.br/${body.slug}`" target="_blank" class="custom share-network-whatsapp btn share share--whatsapp px-2" aria-label="Compartilhar no WhatsApp"><i class="i-whatsapp" style="color: rgb(37, 211, 102);"></i> <span class="ml-1 d-none d-xl-inline-block">
+                  Compartilhar no WhatsApp
+                </span></a>
                 <a-share
                   v-if="body.slug"
                   class="mb-3"
