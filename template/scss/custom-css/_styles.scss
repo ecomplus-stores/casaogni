@@ -3091,3 +3091,49 @@ footer.footer .footer__links li a{
     .search__count{}
   }
 }
+
+@media(max-width:990px){
+  #instant-search{
+    .search__header{
+      .search__input-group{
+        button{
+          height: 42px;
+          padding: 0 .5rem;
+        }
+        input{
+          font-size: 16px;
+          padding-left: 1rem!important;
+        }
+      }
+      .search__status{
+        display: block;
+        button{          
+          color: #fff;
+          padding-right: 0;
+        }
+      }
+    } 
+    .product-card .product-card__pictures{
+      max-height: unset;
+      max-width: unset;
+      width: 100%;
+    }
+    .search__footer{
+      justify-content: center;
+      .search__count{min-width: unset;}
+    }
+    
+  }
+  
+  .product-card{
+    .product-card__prices{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 0;
+      margin: .5rem 0 0 0;
+    }
+  }
+}
